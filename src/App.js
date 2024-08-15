@@ -13,7 +13,7 @@ function App() {
       album: 'Violator',
     },
     {
-      trackName: 'Class Act, Final Front',
+      track: 'Class Act, Final Front',
       artist: 'Johny Rock',
       album: 'Way Over There',
     },
