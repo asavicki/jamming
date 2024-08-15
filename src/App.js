@@ -1,8 +1,6 @@
 
 import { useState } from 'react';
 import './App.css';
-import SearchBar from './components/SearchBar';
-import Tracklist from './components/Tracklist';
 import Track from './components/Track';
 
 function App() {
@@ -18,6 +16,8 @@ function App() {
       album: 'Way Over There',
     },
   ]);
+
+  
 
   return (
     <div className="App">
