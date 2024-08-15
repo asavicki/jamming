@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import './App.css';
 import Track from './components/Track';
+import Tracklist from './components/Tracklist';
 
 function App() {
   const [tracks, setTracks] = useState([
@@ -17,12 +18,19 @@ function App() {
     },
   ]);
 
+  const [playlist, setPlaylist] = useState([{}]);
+
+  const addTrackToPlaylist = (track) => {
+    setPlaylist(prevPlaylist => [track, ...prevPlaylist])
+  };
+
   
 
   return (
     <div className="App">
       <h1>Results</h1>
       <Track tracks={tracks}  />
+      <Tracklist addTrack={addTrackToPlaylist}/>
     </div>
   );
 }
