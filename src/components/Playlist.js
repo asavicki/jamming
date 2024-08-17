@@ -9,7 +9,7 @@ export default function Playlist({ tracklist }) {
   return (
     <div className='Playlist'>
       <form action="submit">
-        <label htmlFor="playlist_name"></label>
+        <label htmlFor="playlist_name">Playlist name:</label><br/>
         <input 
             type="text" 
             name="playlist_name" 
@@ -18,6 +18,7 @@ export default function Playlist({ tracklist }) {
             onChange={handlePlaylistNameChange}    
         />
         <Tracklist tracklist={tracklist} />
+        <button type='submit'>Create a playlist</button>
       </form>
     </div>
   );
