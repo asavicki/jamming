@@ -1,8 +1,8 @@
 
 import { useState } from 'react';
-import './App.css';
+import styles from './Styles.module.css';
 import Track from './components/Track';
-import Tracklist from './components/Tracklist';
+import Playlist from './components/Playlist';
 
 function App() {
   const [tracks, setTracks] = useState([
@@ -18,19 +18,17 @@ function App() {
     },
   ]);
 
-  const [playlist, setPlaylist] = useState([{}]);
+  const [tracklist, setTracklist] = useState([]);
 
-  const addTrackToPlaylist = (track) => {
-    setPlaylist(prevPlaylist => [track, ...prevPlaylist])
+  const addTrackToTracklist = (track) => {
+    setTracklist(prevTracklist => [track, ...prevTracklist])
   };
 
-  
-
   return (
-    <div className="App">
+    <div className={styles.App}>
       <h1>Results</h1>
-      <Track tracks={tracks}  />
-      <Tracklist addTrack={addTrackToPlaylist}/>
+      <Track tracks={tracks} addTrackToTracklist={addTrackToTracklist} />
+      <Playlist tracklist={tracklist} />
     </div>
   );
 }

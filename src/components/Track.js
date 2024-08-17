@@ -1,25 +1,26 @@
 import React from 'react';
 import styles from '../Styles.module.css';
 
-export default function Track({tracks}) {
+export default function Track({ tracks, addTrackToTracklist }) {
   return (
-    <div>
+    <>
         {
         tracks.map((track, id) => {
-            return <div className={styles.trackDetails} key={`${track}_${id}`}>
+            return <div className={styles.track_details} key={`${track.track}_${id}`}>
                 <button
-                aria-label="Remove thought"
-                className={styles.removeButton}
+                aria-label="Add track"
+                className={styles.add_button}
+                onClick={() => addTrackToTracklist(track)}
                 > &times;
                 </button>
                 <ul>
-                    <li className={styles.trackName}>{track.track}</li>
-                    <li className={styles.trackName}>{track.artist}</li>
-                    <li className={styles.trackName}>{track.album}</li>
+                    <li className={styles.track_ame}>{track.track}</li>
+                    <li className={styles.track_name}>{track.artist}</li>
+                    <li className={styles.track_name}>{track.album}</li>
                 </ul>
             </div>
         })
         }
-    </div>
+    </>
   );
 };
