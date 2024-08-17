@@ -31,8 +31,8 @@ function App() {
   return (
     <div className={styles.App}>
       <h1>Results</h1>
-      <Track tracks={tracks} addTrackToTracklist={addTrackToTracklist} removeTrackFromTracklist={removeTrackFromTracklist}/>
-      <Playlist tracklist={tracklist} />
+      <Track tracks={tracks} addTrackToTracklist={addTrackToTracklist} />
+      <Playlist tracklist={tracklist} removeTrackFromTracklist={removeTrackFromTracklist}/>
     </div>
   );
 };
