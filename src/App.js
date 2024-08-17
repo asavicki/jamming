@@ -21,16 +21,20 @@ function App() {
   const [tracklist, setTracklist] = useState([]);
 
   const addTrackToTracklist = (track) => {
-    setTracklist(prevTracklist => [track, ...prevTracklist])
+    setTracklist(prevTracklist => [track, ...prevTracklist]);
+  };
+
+  const removeTrackFromTracklist = (trackToRemove) => {
+    setTracklist(prevTracklist => tracklist.filter((track) => track !== trackToRemove));
   };
 
   return (
     <div className={styles.App}>
       <h1>Results</h1>
-      <Track tracks={tracks} addTrackToTracklist={addTrackToTracklist} />
+      <Track tracks={tracks} addTrackToTracklist={addTrackToTracklist} removeTrackFromTracklist={removeTrackFromTracklist}/>
       <Playlist tracklist={tracklist} />
     </div>
   );
-}
+};
 
 export default App;
