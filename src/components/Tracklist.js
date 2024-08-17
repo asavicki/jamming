@@ -11,7 +11,7 @@ export default function Tracklist({ tracklist, removeTrackFromTracklist }) {
                 aria-label="Remove track"
                 className={styles.remove_button}
                 onClick={() => removeTrackFromTracklist(track)}
-                > -
+                > &times;
             </button>
             <ul>
                 <li className={styles.track_name}>{track.track}</li>

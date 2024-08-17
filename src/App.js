@@ -25,7 +25,7 @@ function App() {
   };
 
   const removeTrackFromTracklist = (trackToRemove) => {
-    setTracklist(prevTracklist => tracklist.filter((track) => track !== trackToRemove));
+    setTracklist(prevTracklist => prevTracklist.filter(track => track.track !== trackToRemove.track || track.artist !== trackToRemove.artist));
   };
 
   return (
