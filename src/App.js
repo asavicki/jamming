@@ -1,8 +1,8 @@
-
 import { useState } from 'react';
 import styles from './Styles.module.css';
 import Track from './components/Track';
 import PlaylistCreator from './components/PlaylistCreator';
+import Playlist from './components/Playlist';
 
 function App() {
   const [tracks, setTracks] = useState([
@@ -20,6 +20,7 @@ function App() {
     },
   ]);
 
+  //TRACKLIST
   const [tracklist, setTracklist] = useState([]);
 
   const addTrackToTracklist = (trackToAdd) => {
@@ -44,6 +45,14 @@ function App() {
     );
   };
 
+  //PLAYLISTS
+  const [playlists, setPlaylists] = useState([]);
+
+  const createPlaylist = (playlistName) => {
+    setPlaylists([...playlists, { playlistName, tracks: tracklist }]);
+    setTracklist([]);
+  };
+
   return (
     <div className={styles.App}>
       <h1>Results</h1>
@@ -54,7 +63,13 @@ function App() {
       <PlaylistCreator 
         tracklist={tracklist} 
         removeTrackFromTracklist={removeTrackFromTracklist}
+        createPlaylist={createPlaylist}
       />
+      {
+      playlists.map((playlist, index) => (
+        <Playlist key={index} playlist={playlist} />
+      ))
+      }
     </div>
   );
 };
