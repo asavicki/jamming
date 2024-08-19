@@ -6,6 +6,11 @@ export default function PlaylistCreator({ tracklist, removeTrackFromTracklist, c
 
     const handlePlaylistNameChange = (e) => setPlaylistName(e.target.value);
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        createPlaylist(playlistName);
+    };
+
   return (
     <div className='PlaylistCreator'>
       <form action="submit">
@@ -21,7 +26,7 @@ export default function PlaylistCreator({ tracklist, removeTrackFromTracklist, c
             tracklist={tracklist} 
             removeTrackFromTracklist={removeTrackFromTracklist}
         />
-        <button>Create a playlist</button>
+        <button type='submit' onClick={handleSubmit}>Create a playlist</button>
       </form>
     </div>
   );
