@@ -18,7 +18,6 @@ export default function Tracklist({ tracklist, removeTrackFromTracklist }) {
                 <li className={styles.track_name}>{track.artist}</li>
                 <li className={styles.track_name}>{track.album}</li>
             </ul>
-          
         </div>
       ))}
     </div>

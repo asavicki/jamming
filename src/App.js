@@ -56,6 +56,20 @@ function App() {
     
   };
 
+  const removeTrackFromPlaylist = (playlistIndex, trackToRemove) => {
+    const updatedPlaylists = playlists.map((playlist, index) => {
+      if (index === playlistIndex) {
+        return {
+          ...playlist,
+          tracks: playlist.tracks.filter(track => track.id !== trackToRemove.id)
+        };
+      }
+      return playlist;
+    });
+
+    setPlaylists(updatedPlaylists);
+  };
+
   return (
     <div className={styles.App}>
       <h1>Results</h1>
@@ -70,7 +84,11 @@ function App() {
       />
       {
       playlists.map((playlist, index) => (
-        <Playlist key={index} playlist={playlist} />
+        <Playlist 
+          key={index} 
+          playlist={playlist}
+          playlistIndex={index}
+          removeTrackFromPlaylist={removeTrackFromPlaylist} />
       ))
       }
     </div>
