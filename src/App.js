@@ -22,8 +22,20 @@ function App() {
 
   const [tracklist, setTracklist] = useState([]);
 
-  const addTrackToTracklist = (track) => {
-    setTracklist(prevTracklist => [track, ...prevTracklist]);
+  const addTrackToTracklist = (trackToAdd) => {
+    // Check if the track already exists in the tracklist
+    const trackExists = tracklist.some(track =>
+      track.track === trackToAdd.track &&
+      track.artist === trackToAdd.artist &&
+      track.album === trackToAdd.album
+    );
+  
+    // If the track does not exist, add it to the tracklist
+    if (!trackExists) {
+      setTracklist(prevTracklist => [trackToAdd, ...prevTracklist]);
+    } else {
+      console.log("Track already exists in the tracklist.");
+    }
   };
 
   const removeTrackFromTracklist = (trackToRemove) => {
