@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Tracklist from './Tracklist';
 
-export default function Playlist({ tracklist }) {
+export default function Playlist({ tracklist, removeTrackFromTracklist }) {
     const [playlistName, setPlaylistName] = useState('');
 
     const handlePlaylistNameChange = (e) => setPlaylistName(e.target.value);
@@ -17,7 +17,10 @@ export default function Playlist({ tracklist }) {
             value={playlistName}
             onChange={handlePlaylistNameChange}    
         />
-        <Tracklist tracklist={tracklist} />
+        <Tracklist 
+            tracklist={tracklist} 
+            removeTrackFromTracklist={removeTrackFromTracklist}
+        />
         <button type='submit'>Create a playlist</button>
       </form>
     </div>

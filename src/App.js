@@ -7,11 +7,13 @@ import Playlist from './components/Playlist';
 function App() {
   const [tracks, setTracks] = useState([
     {
+      id: 1,
       track: 'Enjoyt the Silence',
       artist: 'Depeche Mode',
       album: 'Violator',
     },
     {
+      id: 2,
       track: 'Class Act, Final Front',
       artist: 'Johny Rock',
       album: 'Way Over There',
@@ -25,14 +27,22 @@ function App() {
   };
 
   const removeTrackFromTracklist = (trackToRemove) => {
-    setTracklist(prevTracklist => prevTracklist.filter(track => track.track !== trackToRemove.track || track.artist !== trackToRemove.artist));
+    setTracklist(prevTracklist =>
+      prevTracklist.filter(track => track.id !== trackToRemove.id)
+    );
   };
 
   return (
     <div className={styles.App}>
       <h1>Results</h1>
-      <Track tracks={tracks} addTrackToTracklist={addTrackToTracklist} />
-      <Playlist tracklist={tracklist} removeTrackFromTracklist={removeTrackFromTracklist}/>
+      <Track 
+        tracks={tracks} 
+        addTrackToTracklist={addTrackToTracklist} 
+      />
+      <Playlist 
+        tracklist={tracklist} 
+        removeTrackFromTracklist={removeTrackFromTracklist}
+      />
     </div>
   );
 };

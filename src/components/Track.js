@@ -11,10 +11,10 @@ export default function Track({ tracks, addTrackToTracklist }) {
                 aria-label="Add track"
                 className={styles.add_button}
                 onClick={() => addTrackToTracklist(track)}
-                > &times;
+                > +
                 </button>
                 <ul>
-                    <li className={styles.track_ame}>{track.track}</li>
+                    <li className={styles.track_name}>{track.track}</li>
                     <li className={styles.track_name}>{track.artist}</li>
                     <li className={styles.track_name}>{track.album}</li>
                 </ul>
