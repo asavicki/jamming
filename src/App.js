@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import styles from './Styles.module.css';
 import Track from './components/Track';
-import Playlist from './components/Playlist';
+import PlaylistCreator from './components/PlaylistCreator';
 
 function App() {
   const [tracks, setTracks] = useState([
@@ -51,7 +51,7 @@ function App() {
         tracks={tracks} 
         addTrackToTracklist={addTrackToTracklist} 
       />
-      <Playlist 
+      <PlaylistCreator 
         tracklist={tracklist} 
         removeTrackFromTracklist={removeTrackFromTracklist}
       />
