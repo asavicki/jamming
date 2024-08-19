@@ -49,8 +49,11 @@ function App() {
   const [playlists, setPlaylists] = useState([]);
 
   const createPlaylist = (playlistName) => {
-    setPlaylists([...playlists, { playlistName, tracks: tracklist }]);
-    setTracklist([]);
+    if (playlistName.trim() !== '') {
+      setPlaylists([ { name: playlistName, tracks: tracklist }, ...playlists ]);
+      setTracklist([]);
+    }
+    
   };
 
   return (

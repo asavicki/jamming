@@ -5,8 +5,8 @@ export default function Tracklist({ tracklist, removeTrackFromTracklist }) {
     
   return (
     <div className={styles.tracklist}>
-      {tracklist.map((track, id) => (
-        <div key={`${track.track}_${id}`} className={styles.track_details}>
+      {tracklist.map((track, index) => (
+        <div key={`${track.track}_${index}`} className={styles.track_details}>
             <button
                 aria-label="Remove track"
                 className={styles.remove_button}
