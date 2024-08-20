@@ -3,7 +3,7 @@ import Tracklist from './Tracklist';
 import styles from '../Styles.module.css';
 import { Tooltip } from 'react-tooltip';
 
-export default function Playlist({ playlist, playlistIndex, removeTrackFromPlaylist, updatePlaylistName }) {
+export default function Playlist({ playlist, playlistIndex, removeTrackFromPlaylist, updatePlaylistName, deletePlaylist }) {
     const [playlistName, setPlaylistName] = useState(playlist.name);
 
     const hnadlePlaylistNameChange = (e) => {
@@ -32,6 +32,12 @@ export default function Playlist({ playlist, playlistIndex, removeTrackFromPlayl
                 removeTrackFromTracklist={(track) => removeTrackFromPlaylist(playlistIndex, track)}
             />
             <Tooltip id="my-tooltip" />
+            <button 
+                className={styles.playlist_delete_btn}
+                onClick={(() => deletePlaylist(playlistIndex))}
+            >
+                Delete Playlist
+            </button>
         </div>
     );
 };

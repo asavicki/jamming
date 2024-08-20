@@ -66,7 +66,6 @@ function App() {
       }
       return playlist;
     });
-
     setPlaylists(updatedPlaylists);
   };
 
@@ -75,7 +74,11 @@ function App() {
       index === playlistIndex ? { ...playlist, name: newPlaylistName } : playlist
     );
     setPlaylists(updatedPlaylists);
-  }
+  };
+
+  const deletePlaylist = (playlistIndex) => {
+    setPlaylists(prevPlaylists => prevPlaylists.filter((_, index) => index !== playlistIndex));
+  };
 
   return (
     <div className={styles.App}>
@@ -97,6 +100,7 @@ function App() {
           playlistIndex={index}
           removeTrackFromPlaylist={removeTrackFromPlaylist}
           updatePlaylistName={updatePlaylistName}
+          deletePlaylist={deletePlaylist}
         />
       ))
       }
