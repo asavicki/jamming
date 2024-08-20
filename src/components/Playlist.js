@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Tracklist from './Tracklist';
 import styles from '../Styles.module.css';
+import { Tooltip } from 'react-tooltip';
 
 export default function Playlist({ playlist, playlistIndex, removeTrackFromPlaylist, updatePlaylistName }) {
     const [playlistName, setPlaylistName] = useState(playlist.name);
@@ -15,7 +16,10 @@ export default function Playlist({ playlist, playlistIndex, removeTrackFromPlayl
     return (
         <div className={styles.playlist}>
             <h2 
-                className={styles.playlistName}  
+                className={styles.playlistName}
+                data-tooltip-id="my-tooltip"
+                data-tooltip-content="Cclick to edit"
+                data-tooltip-place="top"
                 contentEditable='true'
                 onInput={hnadlePlaylistNameChange}
                 onBlur={handleNameBlur}
@@ -27,6 +31,7 @@ export default function Playlist({ playlist, playlistIndex, removeTrackFromPlayl
                 tracklist={playlist.tracks} 
                 removeTrackFromTracklist={(track) => removeTrackFromPlaylist(playlistIndex, track)}
             />
+            <Tooltip id="my-tooltip" />
         </div>
     );
 };
