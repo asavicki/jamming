@@ -70,6 +70,13 @@ function App() {
     setPlaylists(updatedPlaylists);
   };
 
+  const updatePlaylistName = (playlistIndex, newPlaylistName) => {
+    const updatedPlaylists = playlists.map((playlist, index) => 
+      index === playlistIndex ? { ...playlist, name: newPlaylistName } : playlist
+    );
+    setPlaylists(updatedPlaylists);
+  }
+
   return (
     <div className={styles.App}>
       <h1>Results</h1>
@@ -88,7 +95,9 @@ function App() {
           key={index} 
           playlist={playlist}
           playlistIndex={index}
-          removeTrackFromPlaylist={removeTrackFromPlaylist} />
+          removeTrackFromPlaylist={removeTrackFromPlaylist}
+          updatePlaylistName={updatePlaylistName}
+        />
       ))
       }
     </div>
