@@ -5,6 +5,7 @@ import PlaylistCreator from './components/PlaylistCreator';
 import Playlist from './components/Playlist';
 
 function App() {
+  //TRACK
   const [tracks, setTracks] = useState([
     {
       id: 1,
