@@ -18,7 +18,7 @@ export default function Playlist({ playlist, playlistIndex, removeTrackFromPlayl
             <h2 
                 className={styles.playlistName}
                 data-tooltip-id="my-tooltip"
-                data-tooltip-content="Cclick to edit"
+                data-tooltip-content="Click to edit"
                 data-tooltip-place="top"
                 contentEditable='true'
                 onInput={hnadlePlaylistNameChange}
