@@ -1,0 +1,28 @@
+{
+    "tracks": [
+        { 
+            "id": 1,
+            "track": "Enjoy the Silence",
+            "artist": "Depeche Mode",
+            "album": "Violator" 
+        },
+        { 
+            "id": 2,
+            "track": "Class Act, Final Front",
+            "artist": "Johny Rock",
+            "album": "Way Over There"
+        },
+        { 
+            "id": 3,
+            "track": "Skidoos",
+            "artist": "Akufen",
+            "album": "Click Shower"
+        },
+        { 
+            "id": 4,
+            "track": "The Lost Highway",
+            "artist": "DJ Manny & TCJ",
+            "album": "THE LOST HIGHWAY"
+        }
+    ]
+}
