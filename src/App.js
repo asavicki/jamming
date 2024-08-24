@@ -3,23 +3,13 @@ import styles from './Styles.module.css';
 import Track from './components/Track';
 import PlaylistCreator from './components/PlaylistCreator';
 import Playlist from './components/Playlist';
+import SearchBar from './components/SearchBar';
+import SearchResults from './components/SearchResults';
 
 function App() {
   //TRACK
-  const [tracks, setTracks] = useState([
-    {
-      id: 1,
-      track: 'Enjoyt the Silence',
-      artist: 'Depeche Mode',
-      album: 'Violator',
-    },
-    {
-      id: 2,
-      track: 'Class Act, Final Front',
-      artist: 'Johny Rock',
-      album: 'Way Over There',
-    },
-  ]);
+  const [tracks, setTracks] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   //TRACKLIST
   const [tracklist, setTracklist] = useState([]);
@@ -83,7 +73,12 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <h1>Results</h1>
+      <h1>Spotify playlist creator</h1>
+      <SearchBar setSearchQuery={setSearchQuery} />
+      <SearchResults 
+        searchQuery={searchQuery}
+        addTrackToTracklist={addTrackToTracklist}
+      />
       <Track 
         tracks={tracks} 
         addTrackToTracklist={addTrackToTracklist} 

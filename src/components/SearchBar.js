@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Styles.module.css';
+
 
 export default function SearchBar({ setSearchQuery }) {
   const  [query, setQuery] = useState('');
@@ -22,7 +22,7 @@ export default function SearchBar({ setSearchQuery }) {
           onChange={queryChangeHandler}
           placeholder='Search for tracks...'
         />
-        <button className={styles.search_button} type='submit'>Search</button>
+        <button className='search_btn' type='submit'>Search</button>
       </form>
     </div>
   );
