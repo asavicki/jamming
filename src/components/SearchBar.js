@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-export default function SearchBar({ setSearchQuery }) {
+export default function SearchBar({ setSearchQuery, searchResults, searchQuery }) {
   const [query, setQuery] = useState('');
 
   const handleSearch = (e) => {
@@ -25,6 +25,9 @@ export default function SearchBar({ setSearchQuery }) {
         />
         <button className='search_btn' type='submit'>Search</button>
       </form>
+      {searchQuery && searchResults.length === 0 && (
+        <p>No results found.</p>
+      )}
     </div>
   );
 };

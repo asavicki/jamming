@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Styles.module.css';
 import Track from './components/Track';
 import PlaylistCreator from './components/PlaylistCreator';
@@ -71,11 +71,38 @@ function App() {
     setPlaylists(prevPlaylists => prevPlaylists.filter((_, index) => index !== playlistIndex));
   };
 
+  //SEARCHRESULTS
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5001/tracks?q=${searchQuery}`);
+        const data = await response.json();
+        const filteredData = data.filter(track => track.track.toLowerCase().includes(searchQuery.toLowerCase()));
+        setSearchResults(filteredData);
+      } catch (error) {
+        console.error('Error fetching data: ', error);
+      }
+    };
+
+    if (searchQuery) {
+      fetchData()
+    } else {
+      setSearchResults([]);
+    }
+
+  }, [searchQuery]);
+
   return (
     <div className={styles.App}>
       <h1>Spotify playlist creator</h1>
-      <SearchBar setSearchQuery={setSearchQuery} />
+      <SearchBar 
+        setSearchQuery={setSearchQuery}
+        searchQuery={searchQuery}
+        searchResults={searchResults} />
       <SearchResults 
+        searchResults={searchResults}
         searchQuery={searchQuery}
         addTrackToTracklist={addTrackToTracklist}
       />
