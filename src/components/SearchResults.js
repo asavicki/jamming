@@ -7,9 +7,10 @@ export default function SearchResults({ searchQuery, addTrackToTracklist }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://locahost:5000/tracks?q=${searchQuery}');
+        const response = await fetch('http://localhost:5001/tracks?q=${searchQuery}');
         const data = await response.json();
-        setSearchResults(data);
+        const filteredData = data.filter(track => track.track.toLowerCase().includes(searchQuery.toLowerCase()));
+        setSearchResults(filteredData);
       } catch (error) {
         console.error('Error fetching data: ', error);
       }
@@ -25,7 +26,8 @@ export default function SearchResults({ searchQuery, addTrackToTracklist }) {
 
   return (
     <div>
-      {SearchResults.length > 0 ? (
+      <h2>Search results</h2>
+      {searchResults.length > 0 ? (
         <Track
           tracks={searchResults}
           addTrackToTracklist={addTrackToTracklist}

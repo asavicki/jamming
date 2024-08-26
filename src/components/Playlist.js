@@ -6,7 +6,7 @@ import { Tooltip } from 'react-tooltip';
 export default function Playlist({ playlist, playlistIndex, removeTrackFromPlaylist, updatePlaylistName, deletePlaylist }) {
     const [playlistName, setPlaylistName] = useState(playlist.name);
 
-    const hnadlePlaylistNameChange = (e) => {
+    const handlePlaylistNameChange = (e) => {
         setPlaylistName(e.target.innerText);
     };
 
@@ -21,11 +21,11 @@ export default function Playlist({ playlist, playlistIndex, removeTrackFromPlayl
                 data-tooltip-content="Click to edit"
                 data-tooltip-place="top"
                 contentEditable='true'
-                onInput={hnadlePlaylistNameChange}
+                onInput={handlePlaylistNameChange}
                 onBlur={handleNameBlur}
                 suppressContentEditableWarning={true}
             >
-                {playlist.name}
+                {playlistName}
             </h2>
             <Tracklist 
                 tracklist={playlist.tracks} 
@@ -34,7 +34,7 @@ export default function Playlist({ playlist, playlistIndex, removeTrackFromPlayl
             <Tooltip id="my-tooltip" />
             <button 
                 className={styles.playlist_delete_btn}
-                onClick={(() => deletePlaylist(playlistIndex))}
+                onClick={() => deletePlaylist(playlistIndex)}
             >
                 Delete Playlist
             </button>
