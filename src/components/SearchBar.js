@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 
 
 export default function SearchBar({ setSearchQuery }) {
-  const  [query, setQuery] = useState('');
+  const [query, setQuery] = useState('');
 
   const handleSearch = (e) => {
     e.preventDefault();
     setSearchQuery(query);
+    setQuery('');
   };
 
   const queryChangeHandler = (e) => {
