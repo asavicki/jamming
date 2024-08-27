@@ -25,7 +25,7 @@ export default function Playlist({ playlist, playlistIndex, removeTrackFromPlayl
                 onBlur={handleNameBlur}
                 suppressContentEditableWarning={true}
             >
-                {playlistName}
+                {playlist.name}
             </h2>
             <Tracklist 
                 tracklist={playlist.tracks} 
