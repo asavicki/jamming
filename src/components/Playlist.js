@@ -3,7 +3,7 @@ import Tracklist from './Tracklist';
 import styles from '../Styles.module.css';
 import { Tooltip } from 'react-tooltip';
 
-export default function Playlist({ playlist, playlistIndex, removeTrackFromPlaylist, updatePlaylistName, deletePlaylist }) {
+export default function Playlist({ playlist, playlistIndex, removeTrackFromPlaylist, updatePlaylistName, deletePlaylist, exportPlaylist }) {
     const [playlistName, setPlaylistName] = useState(playlist.name);
 
     const handlePlaylistNameChange = (e) => {
@@ -34,9 +34,15 @@ export default function Playlist({ playlist, playlistIndex, removeTrackFromPlayl
             <Tooltip id="my-tooltip" />
             <button 
                 className={styles.playlist_delete_btn}
+                onClick={() => exportPlaylist(playlistIndex)}
+            >
+                Add Playlist to Spotify
+            </button>
+            <button 
+                className={styles.playlist_delete_btn}
                 onClick={() => deletePlaylist(playlistIndex)}
             >
-                Delete Playlist
+               Delete Playlist
             </button>
         </div>
     );

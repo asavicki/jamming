@@ -44,7 +44,6 @@ function App() {
       setPlaylists([ { name: playlistName, tracks: tracklist }, ...playlists ]);
       setTracklist([]);
     }
-    
   };
 
   const removeTrackFromPlaylist = (playlistIndex, trackToRemove) => {
@@ -96,6 +95,27 @@ function App() {
 
   }, [searchQuery]);
 
+  // Export a specific playlist
+  const exportPlaylist = async (playlistIndex) => {
+    const playlist = playlists[playlistIndex];
+    
+    // Create mock URIs
+    const mockURIs = playlist.tracks.map(track => `spotify:track:${track.id}`);
+    
+    console.log('Mock URIs for export:', mockURIs);
+
+    // Simulate API request (mocked)
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate network delay
+      console.log('Playlist exported successfully.');
+
+      // Remove the exported playlist
+      deletePlaylist(playlistIndex);
+    } catch (error) {
+      console.error('Error exporting playlist: ', error);
+    }
+  };
+
   return (
     <div className={styles.App}>
       <h1>Spotify playlist creator</h1>
@@ -126,6 +146,7 @@ function App() {
           removeTrackFromPlaylist={removeTrackFromPlaylist}
           updatePlaylistName={updatePlaylistName}
           deletePlaylist={deletePlaylist}
+          exportPlaylist={exportPlaylist}
         />
       ))
       }
