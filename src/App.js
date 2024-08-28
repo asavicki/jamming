@@ -5,6 +5,7 @@ import PlaylistCreator from './components/PlaylistCreator';
 import Playlist from './components/Playlist';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
+import Login from './components/Login';
 
 function App() {
   //TRACK
@@ -116,6 +117,34 @@ function App() {
     }
   };
 
+  //TOKEN
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    let token = window.localStorage.getItem('token');
+
+    if(!token && hash) {
+      token = new URLSearchParams(hash.replace('#', '')).get('access_token');
+
+      window.location.hash = '';
+      window.localStorage.setItem('token', token);
+      
+    }
+
+    setToken(token);
+  }, []);
+
+  if(!token) {
+    return <Login />;
+  };
+
+  const logout = () => {
+    setToken('');
+    window.localStorage.removeItem('token');
+  }
+
+
   return (
     <div className={styles.App}>
       <h1>Spotify playlist creator</h1>
@@ -150,6 +179,7 @@ function App() {
         />
       ))
       }
+      <button className={styles.logout_btn} onClick={logout}>Logout</button>
     </div>
   );
 };
