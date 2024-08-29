@@ -10,11 +10,13 @@ import Login from './components/Login';
 function App() {
   //TRACK
   const [tracks, setTracks] = useState([]);
+  const [tracklist, setTracklist] = useState([]);
+  const [playlists, setPlaylists] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [token, setToken] = useState('');
 
   //TRACKLIST
-  const [tracklist, setTracklist] = useState([]);
-
   const addTrackToTracklist = (trackToAdd) => {
     // Check if the track already exists in the tracklist
     const trackExists = tracklist.some(track =>
@@ -38,8 +40,6 @@ function App() {
   };
 
   //PLAYLISTS
-  const [playlists, setPlaylists] = useState([]);
-
   const createPlaylist = (playlistName) => {
     if (playlistName.trim() !== '') {
       setPlaylists([ { name: playlistName, tracks: tracklist }, ...playlists ]);
@@ -72,8 +72,6 @@ function App() {
   };
 
   //SEARCHRESULTS
-  const [searchResults, setSearchResults] = useState([]);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -118,8 +116,6 @@ function App() {
   };
 
   //TOKEN
-  const [token, setToken] = useState('');
-
   useEffect(() => {
     const hash = window.location.hash;
     let token = window.localStorage.getItem('token');
@@ -129,7 +125,6 @@ function App() {
 
       window.location.hash = '';
       window.localStorage.setItem('token', token);
-      
     }
 
     setToken(token);
@@ -139,6 +134,7 @@ function App() {
     return <Login />;
   };
 
+  //LOGOUT
   const logout = () => {
     setToken('');
     window.localStorage.removeItem('token');
