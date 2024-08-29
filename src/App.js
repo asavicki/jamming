@@ -8,7 +8,7 @@ import SearchResults from './components/SearchResults';
 import Login from './components/Login';
 
 function App() {
-  //TRACK
+  // TRACK
   const [tracks, setTracks] = useState([]);
   const [tracklist, setTracklist] = useState([]);
   const [playlists, setPlaylists] = useState([]);
@@ -16,7 +16,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [token, setToken] = useState('');
 
-  //TRACKLIST
+  // TRACKLIST
   const addTrackToTracklist = (trackToAdd) => {
     // Check if the track already exists in the tracklist
     const trackExists = tracklist.some(track =>
@@ -39,7 +39,7 @@ function App() {
     );
   };
 
-  //PLAYLISTS
+  // PLAYLISTS
   const createPlaylist = (playlistName) => {
     if (playlistName.trim() !== '') {
       setPlaylists([ { name: playlistName, tracks: tracklist }, ...playlists ]);
@@ -71,8 +71,8 @@ function App() {
     setPlaylists(prevPlaylists => prevPlaylists.filter((_, index) => index !== playlistIndex));
   };
 
-  //SEARCHRESULTS
-  //Mock code
+  // SEARCHRESULTS
+  // Mock code
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
@@ -135,7 +135,7 @@ function App() {
     }
   }, [searchQuery, token]);
 
-  //PLAYLIST EEXPORT
+  // PLAYLIST EEXPORT
   // Export a specific playlist
   const exportPlaylist = async (playlistIndex) => {
     const playlist = playlists[playlistIndex];
@@ -157,7 +157,7 @@ function App() {
     }
   };
 
-  //TOKEN
+  // TOKEN
   useEffect(() => {
     const hash = window.location.hash;
     let token = window.localStorage.getItem('token');
@@ -176,7 +176,7 @@ function App() {
     return <Login />;
   };
 
-  //LOGOUT
+  // LOGOUT
   const logout = () => {
     setToken('');
     window.localStorage.removeItem('token');
