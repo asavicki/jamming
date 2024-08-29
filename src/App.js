@@ -72,28 +72,70 @@ function App() {
   };
 
   //SEARCHRESULTS
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`http://localhost:5001/tracks?q=${searchQuery}`);
-        const data = await response.json();
-        const filteredData = data.filter(track => track.track.toLowerCase().includes(searchQuery.toLowerCase()));
+  //Mock code
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(`http://localhost:5001/tracks?q=${searchQuery}`);
+  //       const data = await response.json();
+  //       const filteredData = data.filter(track => track.track.toLowerCase().includes(searchQuery.toLowerCase()));
 
-        setSearchResults(prevResults => [...prevResults, ...filteredData]);
+  //       setSearchResults(prevResults => [...prevResults, ...filteredData]);
         
-      } catch (error) {
-        console.error('Error fetching data: ', error);
-      }
-    };
+  //     } catch (error) {
+  //       console.error('Error fetching data: ', error);
+  //     }
+  //   };
 
-    if (searchQuery) {
+  //   if (searchQuery) {
+  //     fetchData()
+  //   } else {
+  //     setSearchResults([]);
+  //   }
+
+  // }, [searchQuery]);
+  
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`https://api.spotify.com/v1/search?q=${searchQuery}&type=track`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      });
+
+    const data = await response.json();
+
+    // Convert the search query to lowercase for comparison
+    const queryLower = searchQuery.toLowerCase();
+
+    const regexPattern = new RegExp(`${queryLower}\\s*(\\(.*\\)|\\[.*\\])?`, 'i');
+
+    // Filtering logic to catch both exact matches and variations
+    const filteredTracks = data.tracks.items.filter(track => regexPattern.test(track.name));
+
+    const tracks = filteredTracks.map(track => ({
+      id: track.id,
+      track: track.name,
+      artist: track.artists[0].name,
+      album: track.album.name,
+      uri: track.uri
+    }));
+
+      setSearchResults(tracks);
+    } catch (error) {
+      console.error('Error fetching data: ', error);
+    }
+  };
+
+  useEffect(() => {
+    if (searchQuery && token) {
       fetchData()
     } else {
       setSearchResults([]);
     }
+  }, [searchQuery, token]);
 
-  }, [searchQuery]);
-
+  //PLAYLIST EEXPORT
   // Export a specific playlist
   const exportPlaylist = async (playlistIndex) => {
     const playlist = playlists[playlistIndex];
