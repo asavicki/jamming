@@ -135,27 +135,85 @@ function App() {
     }
   }, [searchQuery, token]);
 
-  // PLAYLIST EEXPORT
-  // Export a specific playlist
+  // PLAYLIST EXPORT
   const exportPlaylist = async (playlistIndex) => {
     const playlist = playlists[playlistIndex];
-    
-    // Create mock URIs
-    const mockURIs = playlist.tracks.map(track => `spotify:track:${track.id}`);
-    
-    console.log('Mock URIs for export:', mockURIs);
 
-    // Simulate API request (mocked)
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate network delay
-      console.log('Playlist exported successfully.');
+      // Fetch usr ID
+      const userProfileResponse = await fetch('https://api.spotify.com/v1/me', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
 
-      // Remove the exported playlist
+      if (!userProfileResponse.ok) {
+        throw new Error('Failed to fecth user profile');
+      };
+
+      const userProfile = await userProfileResponse.json();
+      const userId = userProfile.id;
+
+      // Create a new playlist
+      const createPlaylistResponse = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: playlist.name,
+          description: 'Playlist desciption',
+          public: false
+        })
+      });
+
+      if (!createPlaylistResponse.ok) {
+        throw new Error('Failed to create playlist');
+      };
+
+      const createPlaylist = await createPlaylistResponse.json();
+      const playlistId = createPlaylist.id;
+
+      // Add tracks to the playlist
+      const trackUris = playlist.tracks.map(track => track.uri);
+       const addTrackResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          uris: trackUris
+        })
+      });
+
       deletePlaylist(playlistIndex);
     } catch (error) {
       console.error('Error exporting playlist: ', error);
     }
   };
+
+  // Mock POST
+  // const exportPlaylist = async (playlistIndex) => {
+  //   const playlist = playlists[playlistIndex];
+    
+  //   // Create mock URIs
+  //   const mockURIs = playlist.tracks.map(track => `spotify:track:${track.id}`);
+    
+  //   console.log('Mock URIs for export:', mockURIs);
+
+  //   // Simulate API request (mocked)
+  //   try {
+  //     await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate network delay
+  //     console.log('Playlist exported successfully.');
+
+  //     // Remove the exported playlist
+  //     deletePlaylist(playlistIndex);
+  //   } catch (error) {
+  //     console.error('Error exporting playlist: ', error);
+  //   }
+  // };
 
   // TOKEN
   useEffect(() => {
@@ -164,7 +222,6 @@ function App() {
 
     if(!token && hash) {
       token = new URLSearchParams(hash.replace('#', '')).get('access_token');
-
       window.location.hash = '';
       window.localStorage.setItem('token', token);
     }
