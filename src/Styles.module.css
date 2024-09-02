@@ -2,7 +2,69 @@
     color: blue;
 }
 
+#root {
+    background-color: aqua;
+}
+
 .App {
-    display: flex;
+    max-width: 800px;
+    margin: 0 auto;
     color: green;
+    text-align: center;
+    position: relative;
+}
+
+/* HEADER */
+header {
+    
+}
+
+.logout_btn {
+    position: absolute;
+    right: 0;
+}
+
+.app_name_container {
+    
+}
+
+.login {
+
+}
+
+
+.search_btn {
+    margin-left: 5px;
+}
+
+/* SEARCH RESULTS */
+.search_res_playlist_creator_wrapper {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+    text-align: left;
+}
+
+.search_bar {
+    margin-top: 50px;
+}
+
+.track_details_container {
+    position: relative;
+    border-bottom: 1px solid black;
+}
+
+.add_button {
+    position: absolute;
+    right: 0;
+    translate: 50% 50%;
+}
+
+ul.track_details {
+    list-style: none;
+    padding: 0 25px 0 0
+}
+
+ul.track_details li:first-child {
+    margin-bottom: 10px;
 }

@@ -229,52 +229,60 @@ function App() {
     setToken(token);
   }, []);
 
-  if(!token) {
-    return <Login />;
-  };
-
   // LOGOUT
   const logout = () => {
     setToken('');
     window.localStorage.removeItem('token');
   }
 
-
   return (
     <div className={styles.App}>
-      <h1>Spotify playlist creator</h1>
-      <SearchBar 
-        setSearchQuery={setSearchQuery}
-        searchQuery={searchQuery}
-        searchResults={searchResults} />
-      <SearchResults 
-        searchResults={searchResults}
-        searchQuery={searchQuery}
-        addTrackToTracklist={addTrackToTracklist}
-      />
-      <Track 
-        tracks={tracks} 
-        addTrackToTracklist={addTrackToTracklist} 
-      />
-      <PlaylistCreator 
-        tracklist={tracklist} 
-        removeTrackFromTracklist={removeTrackFromTracklist}
-        createPlaylist={createPlaylist}
-      />
-      {
-      playlists.map((playlist, index) => (
-        <Playlist 
-          key={index} 
-          playlist={playlist}
-          playlistIndex={index}
-          removeTrackFromPlaylist={removeTrackFromPlaylist}
-          updatePlaylistName={updatePlaylistName}
-          deletePlaylist={deletePlaylist}
-          exportPlaylist={exportPlaylist}
-        />
-      ))
-      }
-      <button className={styles.logout_btn} onClick={logout}>Logout</button>
+      {!token ? (
+        <Login /> 
+      ) : (
+        <>
+          <header>
+            <button className={styles.logout_btn} onClick={logout}>Logout</button>
+            <div className={styles.app_name_container}>
+              <p>Jamming <br /><span>Spotify Playlist Creator</span></p>
+            </div>
+          </header>
+          <SearchBar 
+            setSearchQuery={setSearchQuery}
+            searchQuery={searchQuery}
+            searchResults={searchResults} 
+          />
+          <div className={styles.search_res_playlist_creator_wrapper}>
+            <SearchResults 
+              searchResults={searchResults}
+              searchQuery={searchQuery}
+              addTrackToTracklist={addTrackToTracklist}
+            />
+            <Track 
+              tracks={tracks} 
+              addTrackToTracklist={addTrackToTracklist} 
+            />
+            <PlaylistCreator 
+              tracklist={tracklist} 
+              removeTrackFromTracklist={removeTrackFromTracklist}
+              createPlaylist={createPlaylist}
+            />
+          </div>
+          {
+          playlists.map((playlist, index) => (
+            <Playlist 
+              key={index} 
+              playlist={playlist}
+              playlistIndex={index}
+              removeTrackFromPlaylist={removeTrackFromPlaylist}
+              updatePlaylistName={updatePlaylistName}
+              deletePlaylist={deletePlaylist}
+              exportPlaylist={exportPlaylist}
+            />
+          ))
+          }
+        </>
+      )}
     </div>
   );
 };

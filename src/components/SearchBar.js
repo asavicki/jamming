@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import styles from '../Styles.module.css';
 
 
 export default function SearchBar({ setSearchQuery, searchResults, searchQuery }) {
@@ -24,7 +25,7 @@ export default function SearchBar({ setSearchQuery, searchResults, searchQuery }
   }, [searchResults]); // Update based on search results changes
 
   return (
-    <div>
+    <div className={styles.search_bar}>
       <form onSubmit={handleSearch}>
         <input 
           type='text'
@@ -32,7 +33,7 @@ export default function SearchBar({ setSearchQuery, searchResults, searchQuery }
           onChange={queryChangeHandler}
           placeholder='Search for tracks...'
         />
-        <button className='search_btn' type='submit'>Search</button>
+        <button className={styles.search_btn} type='submit'>Search</button>
       </form>
       {loading ? (
         <p>Searching...</p>

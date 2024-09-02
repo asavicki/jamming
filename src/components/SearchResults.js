@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Track from './Track';
 
-export default function SearchResults({ searchResults, addTrackToTracklist }) {
+function SearchResults({ searchResults, addTrackToTracklist }) {
   
 
   return (
@@ -15,4 +15,6 @@ export default function SearchResults({ searchResults, addTrackToTracklist }) {
       )}
     </div>
   );
-}
+};
+
+export default memo(SearchResults)
