@@ -238,7 +238,7 @@ function App() {
   return (
     <div className={styles.App}>
       {!token ? (
-        <Login /> 
+        <Login />
       ) : (
         <>
           <header>
@@ -247,31 +247,25 @@ function App() {
               <p>Jamming <br /><span>Spotify Playlist Creator</span></p>
             </div>
           </header>
-          <SearchBar 
+          <SearchBar
             setSearchQuery={setSearchQuery}
             searchQuery={searchQuery}
-            searchResults={searchResults} 
+            searchResults={searchResults}
           />
           <div className={styles.search_res_playlist_creator_wrapper}>
-            <SearchResults 
+            <SearchResults
               searchResults={searchResults}
-              searchQuery={searchQuery}
               addTrackToTracklist={addTrackToTracklist}
             />
-            <Track 
-              tracks={tracks} 
-              addTrackToTracklist={addTrackToTracklist} 
-            />
-            <PlaylistCreator 
-              tracklist={tracklist} 
+            <PlaylistCreator
+              tracklist={tracklist}
               removeTrackFromTracklist={removeTrackFromTracklist}
               createPlaylist={createPlaylist}
             />
           </div>
-          {
-          playlists.map((playlist, index) => (
-            <Playlist 
-              key={index} 
+          {playlists.map((playlist, index) => (
+            <Playlist
+              key={index}
               playlist={playlist}
               playlistIndex={index}
               removeTrackFromPlaylist={removeTrackFromPlaylist}
@@ -279,12 +273,11 @@ function App() {
               deletePlaylist={deletePlaylist}
               exportPlaylist={exportPlaylist}
             />
-          ))
-          }
+          ))}
         </>
       )}
     </div>
   );
-};
+}
 
 export default App;

@@ -1,20 +1,19 @@
 import React, { memo } from 'react';
-import Track from './Track';
+import Tracklist from './Tracklist';
 
 function SearchResults({ searchResults, addTrackToTracklist }) {
-  
-
   return (
     <div>
       <h2>Search results</h2>
       {searchResults.length > 0 && (
-        <Track
-          tracks={searchResults}
-          addTrackToTracklist={addTrackToTracklist}
+        <Tracklist
+          tracklist={searchResults}
+          buttonType="add"  // Specify add button for the search results
+          onButtonClick={addTrackToTracklist}  // Handle adding tracks
         />
       )}
     </div>
   );
-};
+}
 
-export default memo(SearchResults)
+export default memo(SearchResults);

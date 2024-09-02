@@ -54,7 +54,7 @@ header {
     border-bottom: 1px solid black;
 }
 
-.add_button {
+.add_remove_button {
     position: absolute;
     right: 0;
     translate: 50% 50%;
