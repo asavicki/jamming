@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import styles from './Styles.module.css';
-import Track from './components/Track';
 import PlaylistCreator from './components/PlaylistCreator';
 import Playlist from './components/Playlist';
 import SearchBar from './components/SearchBar';
@@ -8,8 +7,7 @@ import SearchResults from './components/SearchResults';
 import Login from './components/Login';
 
 function App() {
-  // TRACK
-  const [tracks, setTracks] = useState([]);
+  // const [tracks, setTracks] = useState([]); used to MOCK Data
   const [tracklist, setTracklist] = useState([]);
   const [playlists, setPlaylists] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
@@ -42,7 +40,10 @@ function App() {
   // PLAYLISTS
   const createPlaylist = (playlistName) => {
     if (playlistName.trim() !== '') {
-      setPlaylists([ { name: playlistName, tracks: tracklist }, ...playlists ]);
+      const newPlaylist = { name: playlistName, tracks: tracklist };
+      const updatedPlaylists = [newPlaylist, ...playlists];
+      setPlaylists(updatedPlaylists);
+      localStorage.setItem('playlists', JSON.stringify(updatedPlaylists));
       setTracklist([]);
     }
   };
@@ -58,6 +59,7 @@ function App() {
       return playlist;
     });
     setPlaylists(updatedPlaylists);
+    localStorage.setItem('playlists', JSON.stringify(updatedPlaylists));
   };
 
   const updatePlaylistName = (playlistIndex, newPlaylistName) => {
@@ -65,10 +67,13 @@ function App() {
       index === playlistIndex ? { ...playlist, name: newPlaylistName } : playlist
     );
     setPlaylists(updatedPlaylists);
+    localStorage.setItem('playlists', JSON.stringify(updatedPlaylists));
   };
 
   const deletePlaylist = (playlistIndex) => {
-    setPlaylists(prevPlaylists => prevPlaylists.filter((_, index) => index !== playlistIndex));
+    const updatedPlaylists = playlists.filter((_, index) => index !== playlistIndex);
+    setPlaylists(updatedPlaylists);
+    localStorage.setItem('playlists', JSON.stringify(updatedPlaylists));
   };
 
   // SEARCHRESULTS
@@ -177,7 +182,7 @@ function App() {
 
       // Add tracks to the playlist
       const trackUris = playlist.tracks.map(track => track.uri);
-       const addTrackResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+      await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -227,6 +232,19 @@ function App() {
     }
 
     setToken(token);
+  }, []);
+
+  // LOAD PLAYLISTS FROM LOCAL STORAGE
+  useEffect(() => {
+    const storedPlaylists = localStorage.getItem('playlists');
+    if (storedPlaylists) {
+      try {
+        const parsedPlaylists = JSON.parse(storedPlaylists);
+        setPlaylists(parsedPlaylists);
+      } catch (error) {
+        console.error("Failed to parse playlists from localStorage:", error);
+      }
+    }
   }, []);
 
   // LOGOUT
