@@ -8,7 +8,9 @@ export default function SearchBar({ setSearchQuery, searchResults, searchQuery }
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setLoading(true);
+    if (query) {
+      setLoading(true);
+    }
     setSearchQuery(query);
     setQuery('');
   };
@@ -25,14 +27,14 @@ export default function SearchBar({ setSearchQuery, searchResults, searchQuery }
   }, [searchResults]); // Update based on search results changes
 
   return (
-    <div className={styles.search_bar}>
+    <div className={styles.search_bar_container}>
       <form onSubmit={handleSearch}>
         <input 
           type='text'
           value={query}
           onChange={queryChangeHandler}
           placeholder='Search for tracks...'
-        />
+        /> <br />
         <button className={styles.search_btn} type='submit'>Search</button>
       </form>
       {loading ? (

@@ -14,23 +14,27 @@ export default function PlaylistCreator({ tracklist, removeTrackFromTracklist, c
   };
 
   return (
-    <div className={styles.PlaylistCreator}>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="playlist_name">Playlist name:</label><br />
-        <input
-          type="text"
-          name="playlist_name"
-          id="playlist_name"
-          value={playlistName}
-          onChange={handlePlaylistNameChange}
-        />
-        <Tracklist
-          tracklist={tracklist}
-          buttonType="remove"  // Specify remove button for the tracklist
-          onButtonClick={removeTrackFromTracklist}  // Handle track removal
-        />
-        <button type='submit'>Create a playlist</button>
-      </form>
+    <div className={styles.tracks_wrapper}>
+      <div className={styles.playlist_creator_container}>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="playlist_name"
+            id="playlist_name"
+            value={playlistName}
+            onChange={handlePlaylistNameChange}
+            placeholder='Playlist name...'
+          />
+          <div style={{textAlign: 'center'}}>
+            <button type='submit'>Create Playlist</button>
+          </div>
+          <Tracklist
+            tracklist={tracklist}
+            buttonType="remove"  // Specify remove button for the tracklist
+            onButtonClick={removeTrackFromTracklist}  // Handle track removal
+          />
+        </form>
+      </div>
     </div>
   );
 }

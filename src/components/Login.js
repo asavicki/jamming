@@ -11,9 +11,9 @@ export default function Login() {
     const loginUrl = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${encodeURIComponent(scope)}`;
 
     return (
-        <div className={styles.login}>
-            <h1>Welcome to Jamming</h1>
-            <a href={loginUrl}>Log in</a>
+        <div className={styles.login_container}>
+            <h1>Welcome to Jamming <br />Spotify Playlist Creator</h1>
+            <button className={styles.login_btn} onClick={() => window.location.href = loginUrl}>Log In</button>
         </div>
     );
 };

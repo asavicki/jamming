@@ -26,8 +26,8 @@ export default function Track({ tracks, buttonType, onButtonClick }) {
           )}
           <ul className={styles.track_details}>
             <li className={styles.track_name}>{track.track}</li>
-            <li className={styles.track_name}><span>by</span> {track.artist}</li>
-            <li className={styles.track_name}><span>from</span> {track.album}</li>
+            <li className={styles.track_artist}><span>by</span> {track.artist}</li>
+            <li className={styles.track_album}><span>from</span> {track.album}</li>
           </ul>
         </div>
       ))}

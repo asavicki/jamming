@@ -260,7 +260,7 @@ function App() {
       ) : (
         <>
           <header>
-            <button className={styles.logout_btn} onClick={logout}>Logout</button>
+            <button className={styles.logout_btn} onClick={logout}>Log Out</button>
             <div className={styles.app_name_container}>
               <p>Jamming <br /><span>Spotify Playlist Creator</span></p>
             </div>
@@ -281,17 +281,23 @@ function App() {
               createPlaylist={createPlaylist}
             />
           </div>
-          {playlists.map((playlist, index) => (
-            <Playlist
-              key={index}
-              playlist={playlist}
-              playlistIndex={index}
-              removeTrackFromPlaylist={removeTrackFromPlaylist}
-              updatePlaylistName={updatePlaylistName}
-              deletePlaylist={deletePlaylist}
-              exportPlaylist={exportPlaylist}
-            />
-          ))}
+          <div className={styles.playlists_wrapper}>
+            <h1 className={styles.playlists_heading}>Playlists</h1>
+            <div className={styles.playlists_container}>
+              {playlists.map((playlist, index) => (
+                <Playlist
+                  key={index}
+                  playlist={playlist}
+                  playlistIndex={index}
+                  removeTrackFromPlaylist={removeTrackFromPlaylist}
+                  updatePlaylistName={updatePlaylistName}
+                  deletePlaylist={deletePlaylist}
+                  exportPlaylist={exportPlaylist}
+                />
+              ))}
+            </div>
+          </div>
+          
         </>
       )}
     </div>
