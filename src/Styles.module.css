@@ -26,6 +26,7 @@
 .tracks_wrapper {
     background-color: var(--darkblue);
     padding: 20px;
+    border-radius: 10px;
 }
 
 .search_res_playlist_creator_wrapper, .playlists_container {
@@ -40,7 +41,7 @@ button {
     background-color: var(--blueviolet);
     padding: 10px 20px;
     border: none;
-    border-radius: 15px;
+    border-radius: 20px;
     color: var(--white);
     font-size: 15px;
     font-family: var(--SUSE);
@@ -108,7 +109,7 @@ h2 {
     background-color: var(--darkblue);
     font-weight: 700;
     font-size: 17px;
-    width: 100px;
+    width: 130px;
 }
 
 /* TRACK */
