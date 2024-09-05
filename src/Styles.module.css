@@ -1,15 +1,18 @@
 :root {
-    --blueviolet: blueviolet;
-    --darkblue: rgb(18, 10, 67);
+    --blueViolet: blueviolet;
+    --darkBlue: rgb(18, 10, 67);
     --white: #ffffff;
     --grey: grey;
     --SUSE: SUSE;
-    --lightgrey: rgba(211, 211, 211, 0.771);
+    --lightGrey: rgba(211, 211, 211, 0.771);
+    --fontWeight800: 800;
+    --fontWeight700: 700;
+    --fontWeight600: 600;
   }
 
 .App {
     margin: 0 auto;
-    background-color: var(--blueviolet);
+    background-color: var(--blueViolet);
     color: var(--white);
     text-align: center;
     position: relative;
@@ -24,7 +27,7 @@
 }
 
 .tracks_wrapper {
-    background-color: var(--darkblue);
+    background-color: var(--darkBlue);
     padding: 20px;
     border-radius: 10px;
 }
@@ -38,14 +41,14 @@
 }
 
 button {
-    background-color: var(--blueviolet);
+    background-color: var(--blueViolet);
     padding: 10px 20px;
     border: none;
     border-radius: 20px;
     color: var(--white);
     font-size: 15px;
     font-family: var(--SUSE);
-    font-weight: 600;
+    font-weight: var(--fontWeight600);
 }
 
 h2 {
@@ -57,18 +60,18 @@ h2 {
     position: absolute;
     right: 40px;
     top: 25px;
-    background-color: var(--darkblue);
-    font-weight: 700;
+    background-color: var(--darkBlue);
+    font-weight: var(--fontWeight800);
 }
 
 .app_name_container {
     padding-top: 15px;
 }
 
-.app_name_container p{
+.app_name_container p {
     margin: 0;
     font-size: 20px;
-    font-weight: 700;
+    font-weight: var(--fontWeight700);
 }
 
 /* LOGIN */
@@ -81,8 +84,8 @@ h2 {
 }
 
 .login_btn {
-    background-color: var(--darkblue);
-    font-weight: 700;
+    background-color: var(--darkBlue);
+    font-weight: var(--fontWeight800);
 }
 
 /* SEARCHRBAR */
@@ -106,42 +109,30 @@ h2 {
 
 .search_btn {
     margin-top: 20px;
-    background-color: var(--darkblue);
-    font-weight: 700;
+    background-color: var(--darkBlue);
+    font-weight: var(--fontWeight800);
     font-size: 17px;
     width: 130px;
 }
 
 /* TRACK */
-.track_name {
-    font-weight: 700;
-}
-.track_artist, .track_album {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--lightgrey);
-}
-.add_remove_button {
-    background-color: var(--darkblue);
-    font-size: 20px;
-    padding: 0;
-}
-
-/* SEARCH RESULTS */
-.search_bar {
-    margin-top: 50px;
-}
-
 .track_details_container {
     position: relative;
     border-bottom: 1px solid var(--grey);
 }
 
+.track_name {
+    font-weight: var(--fontWeight700);
+}
+.track_artist, .track_album {
+    font-size: 14px;
+    font-weight: var(--fontWeight600);
+    color: var(--lightGrey);
+}
 .add_remove_button {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    background-color: var(--darkBlue);
+    font-size: 20px;
+    padding: 0;
 }
 
 ul.track_details {
@@ -154,12 +145,19 @@ ul.track_details li:first-child {
     margin-bottom: 10px;
 }
 
+.add_remove_button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 /* PLAYLIST CREATOR */
 .playlist_creator_container input {
     width: 100%;
     padding-top: 20px;
     box-sizing: border-box;
-    background-color: var(--darkblue);
+    background-color: var(--darkBlue);
     border: none;
     border-bottom: 3px solid grey;
     outline: none;
@@ -177,15 +175,21 @@ ul.track_details li:first-child {
 
 /* PLAYLIST */
 .playlists_wrapper {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 800px;
+    display: inline-block;
+    max-width: 1010px;
+    margin-top: 50px;
 }
+
 .playlists_container {
    margin: 0;
+   flex-wrap: wrap;
+
 }
 .playlists_heading {
-    background-color: var(--darkblue);
+    background-color: var(--darkBlue);
+    margin-bottom: 5px;
+    border-radius: 10px;
+    padding: 6px
 }
 .playlist_btn {
     margin-top: 20px;
