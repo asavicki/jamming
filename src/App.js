@@ -28,7 +28,13 @@ function App() {
       setTracklist(prevTracklist => [trackToAdd, ...prevTracklist]);
     } else {
       console.log("Track already exists in the tracklist.");
-    }
+    };
+
+    const removeAddedTrack = (trackToRemove) => {
+      setSearchResults(prevSearchResults => prevSearchResults.filter(track => track.id !== trackToRemove.id))
+    };
+    
+    removeAddedTrack(trackToAdd);
   };
 
   const removeTrackFromTracklist = (trackToRemove) => {
@@ -99,7 +105,6 @@ function App() {
   //   }
 
   // }, [searchQuery]);
-  
   const fetchData = async () => {
     try {
       const response = await fetch(`https://api.spotify.com/v1/search?q=${searchQuery}&type=track`, {
@@ -109,6 +114,7 @@ function App() {
       });
 
     const data = await response.json();
+    console.log('API response:', data);
 
     // Convert the search query to lowercase for comparison
     const queryLower = searchQuery.toLowerCase();

@@ -12,7 +12,7 @@ export default function Login() {
 
     return (
         <div className={styles.login_container}>
-            <h1>Welcome to Jamming <br />Spotify Playlist Creator</h1>
+            <h1>Welcome to Jammming <br />Spotify Playlist Creator</h1>
             <button className={styles.login_btn} onClick={() => window.location.href = loginUrl}>Log In</button>
         </div>
     );

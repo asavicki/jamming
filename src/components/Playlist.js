@@ -16,7 +16,6 @@ export default function Playlist({ playlist, playlistIndex, removeTrackFromPlayl
 
   return (
     <div className={styles.tracks_wrapper}>
-        
         <div className={styles.playlist_card}>
             <h2
                 className={styles.playlistName}

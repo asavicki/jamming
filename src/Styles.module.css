@@ -10,9 +10,11 @@
     --fontWeight600: 600;
   }
 
-.App {
-    margin: 0 auto;
+body {
     background-color: var(--blueViolet);
+}
+
+.App {
     color: var(--white);
     text-align: center;
     position: relative;
@@ -21,16 +23,7 @@
 }
 
 /* COMMON PARAMS */
-.playlist_creator_container, .search_results_container, .playlist_card {
-    width: 450px;
-    min-height: 450px;
-}
 
-.tracks_wrapper {
-    background-color: var(--darkBlue);
-    padding: 20px;
-    border-radius: 10px;
-}
 
 .search_res_playlist_creator_wrapper, .playlists_container {
     display: flex;
@@ -90,7 +83,7 @@ h2 {
 
 /* SEARCHRBAR */
 .search_bar_container {
-    margin: 100px 0;
+    margin: 100px;
 }
 
 .search_bar_container p {
@@ -102,7 +95,8 @@ h2 {
     border-radius: 20px;
     padding: 10px;
     text-align: center;
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     outline: none;
     font-size: 20px;
 }
@@ -116,6 +110,19 @@ h2 {
 }
 
 /* TRACK */
+.tracks_wrapper {
+    background-color: var(--darkBlue);
+    padding: 20px;
+    border-radius: 10px;
+    width: 410px;
+    height: 450px;
+    overflow: hidden;
+}
+
+.tracks_wrapper:hover {
+    overflow-y: auto;
+}
+
 .track_details_container {
     position: relative;
     border-bottom: 1px solid var(--grey);
@@ -176,7 +183,6 @@ ul.track_details li:first-child {
 /* PLAYLIST */
 .playlists_wrapper {
     display: inline-block;
-    max-width: 1010px;
     margin-top: 50px;
 }
 
@@ -185,12 +191,14 @@ ul.track_details li:first-child {
    flex-wrap: wrap;
 
 }
+
 .playlists_heading {
     background-color: var(--darkBlue);
     margin-bottom: 5px;
     border-radius: 10px;
-    padding: 6px
+    padding: 7px 20px;
 }
+
 .playlist_btn {
     margin-top: 20px;
 }
