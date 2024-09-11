@@ -16,6 +16,7 @@ export default function Playlist({ playlist, playlistIndex, removeTrackFromPlayl
 
   return (
     <div className={styles.tracks_wrapper}>
+
         <div className={styles.playlist_card}>
             <h2
                 className={styles.playlistName}
@@ -35,15 +36,15 @@ export default function Playlist({ playlist, playlistIndex, removeTrackFromPlayl
                 onButtonClick={(track) => removeTrackFromPlaylist(playlistIndex, track)}
             />
             <Tooltip id="my-tooltip" />
-            <div style={{textAlign: 'center'}}>
+            <div className={styles.playlist_btn_container}>
                 <button
-                    className={styles.playlist_btn}
+                    className={styles.playlist_exp_btn}
                     onClick={() => exportPlaylist(playlistIndex)}
                 >
                     Add Playlist to Spotify
-                </button> <br />
+                </button>
                 <button
-                    className={styles.playlist_btn}
+                    className={styles.playlist_del_btn}
                     onClick={() => deletePlaylist(playlistIndex)}
                 >
                     Delete Playlist

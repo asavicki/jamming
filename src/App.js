@@ -45,13 +45,15 @@ function App() {
 
   // PLAYLISTS
   const createPlaylist = (playlistName) => {
-    if (playlistName.trim() !== '') {
-      const newPlaylist = { name: playlistName, tracks: tracklist };
+    if (playlistName.trim() === '' || tracklist.length === 0) {
+      return;
+    }
+
+    const newPlaylist = { name: playlistName, tracks: tracklist };
       const updatedPlaylists = [newPlaylist, ...playlists];
       setPlaylists(updatedPlaylists);
       localStorage.setItem('playlists', JSON.stringify(updatedPlaylists));
       setTracklist([]);
-    }
   };
 
   const removeTrackFromPlaylist = (playlistIndex, trackToRemove) => {
@@ -105,6 +107,7 @@ function App() {
   //   }
 
   // }, [searchQuery]);
+
   const fetchData = async () => {
     try {
       const response = await fetch(`https://api.spotify.com/v1/search?q=${searchQuery}&type=track`, {
@@ -116,15 +119,7 @@ function App() {
     const data = await response.json();
     console.log('API response:', data);
 
-    // Convert the search query to lowercase for comparison
-    const queryLower = searchQuery.toLowerCase();
-
-    const regexPattern = new RegExp(`${queryLower}\\s*(\\(.*\\)|\\[.*\\])?`, 'i');
-
-    // Filtering logic to catch both exact matches and variations
-    const filteredTracks = data.tracks.items.filter(track => regexPattern.test(track.name));
-
-    const tracks = filteredTracks.map(track => ({
+    const tracks = data.tracks.items.map(track => ({
       id: track.id,
       track: track.name,
       artist: track.artists[0].name,

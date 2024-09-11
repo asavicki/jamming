@@ -28,12 +28,12 @@ export default function PlaylistCreator({ tracklist, removeTrackFromTracklist, c
           <div style={{textAlign: 'center'}}>
             <button type='submit'>Create Playlist</button>
           </div>
-          <Tracklist
+        </form>
+        <Tracklist
             tracklist={tracklist}
             buttonType="remove"  // Specify remove button for the tracklist
             onButtonClick={removeTrackFromTracklist}  // Handle track removal
           />
-        </form>
       </div>
     </div>
   );
