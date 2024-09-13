@@ -28,14 +28,15 @@ function App() {
       setTracklist(prevTracklist => [trackToAdd, ...prevTracklist]);
     } else {
       console.log("Track already exists in the tracklist.");
-    };
-
-    const removeAddedTrack = (trackToRemove) => {
-      setSearchResults(prevSearchResults => prevSearchResults.filter(track => track.id !== trackToRemove.id))
-    };
-    
-    removeAddedTrack(trackToAdd);
+    }
+  
+    // Remove track from search results
+    removeTrackFromSearchResults(trackToAdd);
   };
+  
+  const removeTrackFromSearchResults = (trackToRemove) => {
+    setSearchResults(prevSearchResults => prevSearchResults.filter(track => track.id !== trackToRemove.id));
+  };  
 
   const removeTrackFromTracklist = (trackToRemove) => {
     setTracklist(prevTracklist =>
@@ -263,13 +264,14 @@ function App() {
           <header>
             <button className={styles.logout_btn} onClick={logout}>Log Out</button>
             <div className={styles.app_name_container}>
-              <p>Jamming <br /><span>Spotify Playlist Creator</span></p>
+              <p>Jammming <br /><span>Spotify Playlist Creator</span></p>
             </div>
           </header>
           <SearchBar
             setSearchQuery={setSearchQuery}
             searchQuery={searchQuery}
             searchResults={searchResults}
+            tracklist={tracklist}
           />
           <div className={styles.search_res_playlist_creator_wrapper}>
             <SearchResults

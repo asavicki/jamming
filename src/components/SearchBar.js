@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from '../Styles.module.css';
 
 
-export default function SearchBar({ setSearchQuery, searchResults, searchQuery }) {
+export default function SearchBar({ setSearchQuery, searchResults, searchQuery, tracklist }) {
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -26,6 +26,12 @@ export default function SearchBar({ setSearchQuery, searchResults, searchQuery }
     }
   }, [searchResults]); // Update based on search results changes
 
+  // const paragraph = (
+  //   if (loading) {
+  //     return <p>Searching...</p>
+  //   } else if (searchQuery && searchResults.length === 0) {}
+  // )
+
   return (
     <div className={styles.search_bar_container}>
       <form onSubmit={handleSearch}>
@@ -33,16 +39,12 @@ export default function SearchBar({ setSearchQuery, searchResults, searchQuery }
           type='text'
           value={query}
           onChange={queryChangeHandler}
-          placeholder='Search for tracks...'
+          placeholder='Search for tracks, artists or albums...'
         /> <br />
         <button className={styles.search_btn} type='submit'>Search</button>
       </form>
-      {loading ? (
+      {loading && (
         <p>Searching...</p>
-      ) : (
-        searchQuery && searchResults.length === 0 && (
-          <p>No results found.</p>
-        )
       )}
     </div>
   );
