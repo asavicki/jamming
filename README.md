@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Spotify Playlist Creator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Spotify Playlist Creator is a React-based web application that allows users to search for songs, albums, or artists on Spotify and create custom playlists. Users can export these playlists to their Spotify account or manage them within the app.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Search Music**: Search for tracks by track name, album, or artist (search results are limited to 20 items per query).
+- **Create Playlists**: Add tracks to a playlist, save it, and either export it to your Spotify account or delete it.
+- **Spotify Integration**: Log in with your Spotify account to use the app. Authentication is handled through Spotify’s OAuth process, and the token remains valid for 1 hour. After the token expires, the user must log out and log in again to refresh it.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## How to Use
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **Login with Spotify**: The app requires you to have a Spotify account. You'll be prompted to log in and grant the app access to your Spotify data.
+2. **Search for Tracks**: You can search by track name, album, or artist. The app fetches data using Spotify’s API.
+3. **Create and Manage Playlists**:
+    - Add tracks to your playlist.
+    - Save and manage your playlists from the playlists section.
+    - Export playlists to your Spotify account or delete them from the app.
+4. **Token Expiration**: Your session lasts 1 hour. Afterward, log out and log back in to continue using the app.
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+   
+   `git clone https://github.com/asavickij/jamming.git`
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   `npm install`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Set up your Spotify Developer Account:
 
-### `npm run eject`
+    - Visit the Spotify Developer Dashboard and create an app.
+    - Use the app’s Client ID in your app for authentication.
+    - Make sure the redirect URI matches the one you set up in your Spotify Developer app.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. Run the development server:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   `npm start`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+5. Your app will be running at http://localhost:3000.
