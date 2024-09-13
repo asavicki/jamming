@@ -1,6 +1,6 @@
 # Spotify Playlist Creator
 
-Spotify Playlist Creator is a React-based web application that allows users to search for songs, albums, or artists on Spotify and create custom playlists. Users can export these playlists to their Spotify account or manage them within the app.
+ Spotify Playlist Creator is a React-based web application that allows users to search for songs, albums, or artists on Spotify and create custom playlists. Users can export these playlists to their Spotify account or manage them within the app.
 
 ## Features
 
@@ -41,3 +41,17 @@ Spotify Playlist Creator is a React-based web application that allows users to s
    `npm start`
 
 5. Your app will be running at http://localhost:3000.
+
+## Dependencies
+
+- React
+- Spotify Web API
+
+## Authentication
+
+ The user authentication logic is located in the Login.js component.
+  
+## Contributing
+    
+ Feel free to fork this repository and submit pull requests. Issues and feedback are welcome.
+
