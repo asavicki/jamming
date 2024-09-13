@@ -26,12 +26,6 @@ export default function SearchBar({ setSearchQuery, searchResults, searchQuery, 
     }
   }, [searchResults]); // Update based on search results changes
 
-  // const paragraph = (
-  //   if (loading) {
-  //     return <p>Searching...</p>
-  //   } else if (searchQuery && searchResults.length === 0) {}
-  // )
-
   return (
     <div className={styles.search_bar_container}>
       <form onSubmit={handleSearch}>

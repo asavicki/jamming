@@ -227,3 +227,45 @@ ul.track_details li:first-child {
 .playlist_del_btn {
     margin-left: 5px;
 }
+
+/* RESPONSIVE */
+/* max-widht 1890px */
+@media all and (max-width: 1890px) {
+
+    .playlists_wrapper {
+        max-width: 1410px;
+    }
+}
+
+/* max-widht 1410px */
+@media all and (max-width: 1410px) {
+
+    .playlists_wrapper {
+        max-width: 930px;
+    }
+}
+
+/* max-widht 930px */
+@media all and (max-width: 930px) {
+
+    .playlists_wrapper {
+        max-width: 450px;
+    }
+
+    .search_res_playlist_creator_wrapper {
+        flex-wrap: wrap;
+    }
+}
+
+/* max-widht 768px */
+@media all and (max-width: 930px) {
+
+    .logout_btn {
+        position: static;
+        margin-top: 10px;
+    }
+
+    .search_bar_container {
+        margin: 50px;
+    }
+}
