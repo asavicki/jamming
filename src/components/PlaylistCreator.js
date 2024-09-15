@@ -26,7 +26,7 @@ export default function PlaylistCreator({ tracklist, removeTrackFromTracklist, c
             placeholder='Playlist name...'
           />
           <div style={{textAlign: 'center'}}>
-            <button type='submit'>Create Playlist</button>
+            <button type='submit' className={styles.playlist_creator_btn}>Create Playlist</button>
           </div>
         </form>
         <Tracklist

@@ -79,7 +79,7 @@ input:-webkit-autofill{
 }
 
 
-.playlist_creator_container button, .playlist_exp_btn, .playlist_del_btn {
+.playlist_creator_btn, .playlist_exp_btn, .playlist_del_btn {
     
     &:hover {
         background-color: var(--darkBlue);
@@ -178,11 +178,6 @@ input:-webkit-autofill{
     font-weight: var(--fontWeight600);
     color: var(--lightGrey);
 }
-.add_remove_button {
-    background-color: var(--darkBlue);
-    font-size: 20px;
-    padding: 0;
-}
 
 ul.track_details {
     list-style: none;
@@ -194,11 +189,14 @@ ul.track_details li:first-child {
     margin-bottom: 10px;
 }
 
-.add_remove_button {
+.add_remove_btn {
     position: absolute;
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+    background-color: var(--darkBlue);
+    font-size: 20px;
+    padding: 0;
 }
 
 /* PLAYLIST CREATOR */
@@ -214,7 +212,7 @@ ul.track_details li:first-child {
     font-size: 20px;
 }
 
-.playlist_creator_container button {
+.playlist_creator_btn {
     margin-bottom: 15px;
 }
 

@@ -117,6 +117,12 @@ function App() {
         }
       });
 
+      if (!response.ok) {
+  console.error(`Error: ${response.status} ${response.statusText}`);
+  const errorText = await response.text();  // Get the error text if it's not JSON
+  console.error('Error response text:', errorText);
+  return;
+}
     const data = await response.json();
     console.log('API response:', data);
 

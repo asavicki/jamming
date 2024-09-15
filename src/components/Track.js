@@ -9,7 +9,7 @@ export default function Track({ tracks, buttonType, onButtonClick }) {
           {buttonType === 'add' && (
             <button
               aria-label="Add track"
-              className={styles.add_remove_button}
+              className={styles.add_remove_btn}
               onClick={() => onButtonClick(track)}
             >
               +
@@ -18,7 +18,7 @@ export default function Track({ tracks, buttonType, onButtonClick }) {
           {buttonType === 'remove' && (
             <button
               aria-label="Remove track"
-              className={styles.add_remove_button}
+              className={styles.add_remove_btn}
               onClick={() => onButtonClick(track)}
             >
               &times;
