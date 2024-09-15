@@ -11,7 +11,7 @@
 
 ## How to Use
 
-1. **Login with Spotify**: The app requires you to have a Spotify account. You'll be prompted to log in and grant the app access to your Spotify data.
+1. **Login with Spotify**: The app requires you to have a Spotify account and for you to be registered with the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/). You'll need to create an application to obtain your Client ID and Client Secret.
 2. **Search for Tracks**: You can search by track name, album, or artist. The app fetches data using Spotify’s API.
 3. **Create and Manage Playlists**:
     - Add tracks to your playlist.
