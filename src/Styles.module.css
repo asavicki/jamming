@@ -199,6 +199,13 @@ ul.track_details li:first-child {
     padding: 0;
 }
 
+.track_image {
+    width: 50px;
+    height: 100%;
+    float: left;
+    position: relative;
+}
+
 /* PLAYLIST CREATOR */
 .playlist_creator_container input {
     width: 100%;

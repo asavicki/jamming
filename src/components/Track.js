@@ -24,11 +24,20 @@ export default function Track({ tracks, buttonType, onButtonClick }) {
               &times;
             </button>
           )}
-          <ul className={styles.track_details}>
-            <li className={styles.track_name}>{track.track}</li>
-            <li className={styles.track_artist}><span>by</span> {track.artist}</li>
-            <li className={styles.track_album}><span>from</span> {track.album}</li>
-          </ul>
+          <div>
+            <img className={styles.track_image} src={track.image} alt='album cover'/>
+            <audio controlsList="nodownload,play">
+            <source src="audio.mp3" type="audio/mpeg" />
+            </audio>
+          </div>
+          <div>
+            <ul className={styles.track_details}>
+              <li className={styles.track_name}>{track.track}</li>
+              <li className={styles.track_artist}><span>by</span> {track.artist}</li>
+              <li className={styles.track_album}><span>from</span> {track.album}</li>
+            </ul>
+          </div>
+          
         </div>
       ))}
     </>
