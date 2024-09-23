@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../Styles.module.css';
 
 export default function Track({ tracks, buttonType, onButtonClick }) {
+  const [playingTrackId, setPlayingTrackId] = useState(null);
+
+  const togglePlay = (trackId) => {
+    const audio = document.getElementById(trackId);
+
+    if (playingTrackId === trackId) {
+      audio.pause();
+      setPlayingTrackId(null); // Stop the current track
+    } else {
+      // Pause any currently playing track
+      if (playingTrackId) {
+        const currentAudio = document.getElementById(playingTrackId);
+        currentAudio.pause();
+      }
+      audio.play();
+      setPlayingTrackId(trackId); // Set the new playing track
+    }
+  };
+
   return (
     <>
       {tracks.map((track, id) => (
@@ -24,10 +43,31 @@ export default function Track({ tracks, buttonType, onButtonClick }) {
               &times;
             </button>
           )}
-          <div>
-            <img className={styles.track_image} src={track.image} alt='album cover'/>
-            <audio controlsList="nodownload,play">
-            <source src="audio.mp3" type="audio/mpeg" />
+          <div className={styles.audio}>
+            <button 
+              className={styles.play_btn} 
+              style={{ 
+                background: `url(${track.image})`, 
+                backgroundSize: '100% 100%',
+                display: playingTrackId === track.id ? 'none' : 'block' // Show play button if not playing
+              }}
+              onClick={() => togglePlay(track.id)}
+            >
+              <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.555,3.168A1,1,0,0,0,6,4V20a1,1,0,0,0,1.555.832l12-8a1,1,0,0,0,0-1.664ZM8,18.131V5.869L17.2,12Z"/></svg>
+            </button>
+            <button 
+              className={styles.pause_btn}
+              style={{ 
+                background: `url(${track.image})`, 
+                backgroundSize: '100% 100%', 
+                display: playingTrackId === track.id ? 'block' : 'none' // Show pause button if playing
+              }}
+              onClick={() => togglePlay(track.id)}
+            >
+              <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5,3A1,1,0,0,0,4,4V20a1,1,0,0,0,1,1h5a1,1,0,0,0,1-1V4a1,1,0,0,0-1-1ZM9,19H6V5H9ZM14,3a1,1,0,0,0-1,1V20a1,1,0,0,0,1,1h5a1,1,0,0,0,1-1V4a1,1,0,0,0-1-1Zm4,16H15V5h3Z"/></svg>
+            </button>
+            <audio id={track.id}>
+              <source src={track.preview} type="audio/mpeg" />
             </audio>
           </div>
           <div>
