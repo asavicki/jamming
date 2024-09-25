@@ -47,7 +47,7 @@ export default function Track({ tracks, buttonType, onButtonClick }) {
             <button 
               className={styles.play_btn} 
               style={{ 
-                background: `url(${track.image})`, 
+                backgroundImage: `url(${track.image})`, 
                 backgroundSize: '100% 100%',
                 display: playingTrackId === track.id ? 'none' : 'block' // Show play button if not playing
               }}
@@ -58,7 +58,7 @@ export default function Track({ tracks, buttonType, onButtonClick }) {
             <button 
               className={styles.pause_btn}
               style={{ 
-                background: `url(${track.image})`, 
+                backgroundImage: `url(${track.image})`, 
                 backgroundSize: '100% 100%', 
                 display: playingTrackId === track.id ? 'block' : 'none' // Show pause button if playing
               }}
