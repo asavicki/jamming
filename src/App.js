@@ -25,7 +25,12 @@ function App() {
   
     // If the track does not exist, add it to the tracklist
     if (!trackExists) {
-      setTracklist(prevTracklist => [trackToAdd, ...prevTracklist]);
+      setTracklist(prevTracklist => {
+        const updatedTracklist = [trackToAdd, ...prevTracklist];
+        localStorage.setItem('tracklist', JSON.stringify(updatedTracklist));
+        return updatedTracklist;
+      }
+        );
     } else {
       console.log("Track already exists in the tracklist.");
     }
@@ -44,8 +49,12 @@ function App() {
   };
 
   const removeTrackFromTracklist = (trackToRemove) => {
-    setTracklist(prevTracklist => 
-      prevTracklist.filter(track => track.id !== trackToRemove.id)
+    setTracklist(prevTracklist => {
+      const updatedTracklist = prevTracklist.filter(track => track.id !== trackToRemove.id);
+      localStorage.setItem('tracklist', JSON.stringify(updatedTracklist));
+      return updatedTracklist;
+    }
+      
     );
   };
 
@@ -60,6 +69,7 @@ function App() {
       setPlaylists(updatedPlaylists);
       localStorage.setItem('playlists', JSON.stringify(updatedPlaylists));
       setTracklist([]);
+      localStorage.removeItem('tracklist');
   };
 
   const removeTrackFromPlaylist = (playlistIndex, trackToRemove) => {
@@ -248,10 +258,11 @@ function App() {
     setToken(token);
   }, []);
 
-  // LOAD PLAYLISTS FROM LOCAL STORAGE
+  // LOAD PLAYLISTS, SEARCHRESULTS, TRACKLIST FROM LOCAL STORAGE
   useEffect(() => {
     const storedPlaylists = localStorage.getItem('playlists');
     const storedSearchResults = localStorage.getItem('searchResults');
+    const storedTracklist = localStorage.getItem('tracklist');
     
     if (storedPlaylists) {
       try {
@@ -260,7 +271,7 @@ function App() {
       } catch (error) {
         console.error("Failed to parse playlists from localStorage:", error);
       }
-    }
+    };
 
     if (storedSearchResults) {
       try {
@@ -269,7 +280,16 @@ function App() {
       } catch (error) {
         console.error("Failed to parse searchResults from localStorage:", error);
       }
-    }
+    };
+
+    if (storedTracklist) {
+      try {
+        const parsedTracklist = JSON.parse(storedTracklist);
+        setTracklist(parsedTracklist);
+      } catch (error) {
+        console.error("Failed to parse searchResults from localStorage:", error);
+      }
+    };
   }, []);
 
   // LOGOUT
