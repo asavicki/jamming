@@ -35,11 +35,16 @@ function App() {
   };
   
   const removeTrackFromSearchResults = (trackToRemove) => {
-    setSearchResults(prevSearchResults => prevSearchResults.filter(track => track.id !== trackToRemove.id));
-  };  
+    setSearchResults(prevSearchResults => {
+      const updatedSearchResults = prevSearchResults.filter(track => track.id !== trackToRemove.id);
+      localStorage.setItem('searchResults', JSON.stringify(updatedSearchResults));
+      return updatedSearchResults;
+    }
+      );
+  };
 
   const removeTrackFromTracklist = (trackToRemove) => {
-    setTracklist(prevTracklist =>
+    setTracklist(prevTracklist => 
       prevTracklist.filter(track => track.id !== trackToRemove.id)
     );
   };
