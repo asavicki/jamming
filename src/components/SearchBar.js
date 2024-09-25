@@ -24,7 +24,7 @@ export default function SearchBar({ setSearchQuery, searchResults, searchQuery, 
     if (searchQuery) {
       setLoading(false); //Set loading to false when data is fetched
     }
-  }, [searchResults]); // Update based on search results changes
+  }, [searchResults, searchQuery]); // Update based on search results changes
 
   return (
     <div className={styles.search_bar_container}>

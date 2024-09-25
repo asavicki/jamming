@@ -124,7 +124,7 @@ function App() {
   return;
 }
     const data = await response.json();
-    console.log('API response:', data);
+    // console.log('API response:', data);
 
     const tracks = data.tracks.items.map(track => ({
       id: track.id,
@@ -137,6 +137,7 @@ function App() {
     }));
 
       setSearchResults(tracks);
+      localStorage.setItem('searchResults', JSON.stringify(tracks));
     } catch (error) {
       console.error('Error fetching data: ', error);
     }
@@ -145,8 +146,6 @@ function App() {
   useEffect(() => {
     if (searchQuery && token) {
       fetchData()
-    } else {
-      setSearchResults([]);
     }
   }, [searchQuery, token]);
 
@@ -247,12 +246,23 @@ function App() {
   // LOAD PLAYLISTS FROM LOCAL STORAGE
   useEffect(() => {
     const storedPlaylists = localStorage.getItem('playlists');
+    const storedSearchResults = localStorage.getItem('searchResults');
+    
     if (storedPlaylists) {
       try {
         const parsedPlaylists = JSON.parse(storedPlaylists);
         setPlaylists(parsedPlaylists);
       } catch (error) {
         console.error("Failed to parse playlists from localStorage:", error);
+      }
+    }
+
+    if (storedSearchResults) {
+      try {
+        const parsedSearchResults = JSON.parse(storedSearchResults);
+        setSearchResults(parsedSearchResults);
+      } catch (error) {
+        console.error("Failed to parse searchResults from localStorage:", error);
       }
     }
   }, []);
