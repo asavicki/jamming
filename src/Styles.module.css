@@ -262,6 +262,7 @@ ul.track_details li:first-child {
 .playlists_container {
    margin: 0;
    flex-wrap: wrap;
+   justify-content: flex-start;
 }
 
 .playlists_heading {
