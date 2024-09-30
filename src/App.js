@@ -100,7 +100,6 @@ function App() {
     localStorage.setItem('playlists', JSON.stringify(updatedPlaylists));
   };
 
-
   const fetchData = async () => {
     try {
       const response = await fetch(`https://api.spotify.com/v1/search?q=${searchQuery}&type=track`, {
@@ -116,7 +115,7 @@ function App() {
   return;
 }
     const data = await response.json();
-    // console.log('API response:', data);
+    console.log('API response:', data);
 
     const tracks = data.tracks.items.map(track => ({
       id: track.id,
@@ -125,6 +124,9 @@ function App() {
       album: track.album.name,
       image: track.album.images[0].url,
       preview: track.preview_url,
+      track_url: track.external_urls.spotify,
+      artist_url: track.artists[0].external_urls.spotify,
+      album_url: track.album.external_urls.spotify,
       uri: track.uri
     }));
 
