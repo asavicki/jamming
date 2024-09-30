@@ -70,14 +70,11 @@ export default function Track({ tracks, buttonType, onButtonClick }) {
               <source src={track.preview} type="audio/mpeg" />
             </audio>
           </div>
-          <div>
-            <ul className={styles.track_details}>
-              <li className={styles.track_name}><a href={track.track_url} target="_blank" rel="noopener noreferrer">{track.track}</a></li>
-              <li className={styles.track_artist}><span>by</span> <a href={track.artist_url} target="_blank" rel="noopener noreferrer">{track.artist}</a></li>
-              <li className={styles.track_album}><span>from</span> <a href={track.album_url} target="_blank" rel="noopener noreferrer">{track.album}</a></li>
-            </ul>
-          </div>
-          
+          <ul className={styles.track_details}>
+            <li className={styles.track_name}><a href={track.track_url} target="_blank" rel="noopener noreferrer">{track.track}</a></li>
+            <li className={styles.track_artist}><span>by</span> <a href={track.artist_url} target="_blank" rel="noopener noreferrer">{track.artist}</a></li>
+            <li className={styles.track_album}><span>from</span> <a href={track.album_url} target="_blank" rel="noopener noreferrer">{track.album}</a></li>
+          </ul>
         </div>
       ))}
     </>

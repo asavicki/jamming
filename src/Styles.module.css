@@ -182,6 +182,10 @@ input:-webkit-autofill{
     color: var(--lightGrey);
 }
 
+ul.track_details span {
+    font-size: 12px;
+}
+
 ul.track_details {
     list-style: none;
     padding: 16px 35px 16px 0;
@@ -190,6 +194,19 @@ ul.track_details {
 
 ul.track_details li:first-child {
     margin-bottom: 10px;
+}
+
+.track_details a {
+    text-decoration: none;
+    color: var(--lightGrey);
+}
+
+.track_name a {
+    color: var(--white);
+}
+
+.track_details a:hover {
+    text-decoration: underline;
 }
 
 .add_remove_btn {
