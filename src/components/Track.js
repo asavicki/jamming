@@ -44,12 +44,12 @@ export default function Track({ tracks, buttonType, onButtonClick }) {
               &times;
             </button>
           )}
+          <img className={styles.album_cover} src={track.image} alt="album_cover" />
           <div className={styles.audio}>
             <button 
               className={styles.play_btn} 
-              style={{ 
-                backgroundImage: `url(${track.image})`, 
-                backgroundSize: '100% 100%',
+              style={{
+                backgroundColor: 'transparent',
                 display: playingTrackId === track.id ? 'none' : 'block' // Show play button if not playing
               }}
               onClick={() => togglePlay(track.id)}
@@ -58,9 +58,8 @@ export default function Track({ tracks, buttonType, onButtonClick }) {
             </button>
             <button 
               className={styles.pause_btn}
-              style={{ 
-                backgroundImage: `url(${track.image})`, 
-                backgroundSize: '100% 100%', 
+              style={{
+                backgroundColor: 'transparent',
                 display: playingTrackId === track.id ? 'block' : 'none' // Show pause button if playing
               }}
               onClick={() => togglePlay(track.id)}
