@@ -248,6 +248,13 @@ ul.track_details li:first-child {
     fill: var(--white);
 }
 
+.spotigy_logo {
+    width: 60px;
+    height: auto;
+    position: absolute;
+    right: 30px;
+}
+
 /* PLAYLIST CREATOR */
 .playlist_creator_container input {
     width: 100%;
