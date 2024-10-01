@@ -232,19 +232,20 @@ ul.track_details li:first-child {
 
 .play_btn, .pause_btn {
     position: absolute;
-    right: 6px;
-    top: 52%;
+    right: 17px;
+    top: 50%;
     transform: translateY(-50%);
-    padding: 10px 10px;
+    padding: 0;
 }
 
 .play_btn svg, .pause_btn svg {
+    display: block;
     width: 20px;
     height: auto;
     fill: var(--white);
 }
 
-.spotigy_logo {
+.spotify_logo {
     width: 60px;
     height: auto;
     position: absolute;

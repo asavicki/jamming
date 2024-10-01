@@ -80,7 +80,7 @@ export default function Track({ tracks, buttonType, onButtonClick }) {
             <li className={styles.track_artist}><span>by</span> <a href={track.artist_url} target="_blank" rel="noopener noreferrer">{track.artist}</a></li>
             <li className={styles.track_album}><span>from</span> <a href={track.album_url} target="_blank" rel="noopener noreferrer">{track.album}</a></li>
           </ul>
-          <img className={styles.spotigy_logo} src={Full_Logo_White_RGB} alt="spotify_logo" />
+          <img className={styles.spotify_logo} src={Full_Logo_White_RGB} alt="spotify_logo" />
         </div>
       ))}
     </>

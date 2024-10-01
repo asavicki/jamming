@@ -100,6 +100,21 @@ function App() {
     localStorage.setItem('playlists', JSON.stringify(updatedPlaylists));
   };
 
+  // TOKEN
+  useEffect(() => {
+    const hash = window.location.hash;
+    let token = window.localStorage.getItem('token');
+
+    if(!token && hash) {
+      token = new URLSearchParams(hash.replace('#', '')).get('access_token');
+      window.location.hash = '';
+      window.localStorage.setItem('token', token);
+    }
+
+    setToken(token);
+  }, []);
+
+// DATA FETCH
   const fetchData = async () => {
     try {
       const response = await fetch(`https://api.spotify.com/v1/search?q=${searchQuery}&type=track`, {
@@ -201,20 +216,6 @@ function App() {
       console.error('Error exporting playlist: ', error);
     }
   };
-
-  // TOKEN
-  useEffect(() => {
-    const hash = window.location.hash;
-    let token = window.localStorage.getItem('token');
-
-    if(!token && hash) {
-      token = new URLSearchParams(hash.replace('#', '')).get('access_token');
-      window.location.hash = '';
-      window.localStorage.setItem('token', token);
-    }
-
-    setToken(token);
-  }, []);
 
   // LOAD PLAYLISTS, SEARCHRESULTS, TRACKLIST FROM LOCAL STORAGE
   useEffect(() => {
