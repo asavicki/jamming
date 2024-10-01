@@ -5,8 +5,13 @@ import Full_Logo_White_RGB from '../images/Full_Logo_White_RGB.svg';
 export default function Track({ tracks, buttonType, onButtonClick }) {
   const [playingTrackId, setPlayingTrackId] = useState(null);
 
-  const togglePlay = (trackId) => {
+  const togglePlay = (trackId, previewUrl) => {
     const audio = document.getElementById(trackId);
+
+    if (!previewUrl) {
+      alert('Preview not available for this track');
+      return;
+    };
 
     if (playingTrackId === trackId) {
       audio.pause();
@@ -52,7 +57,7 @@ export default function Track({ tracks, buttonType, onButtonClick }) {
                 backgroundColor: 'transparent',
                 display: playingTrackId === track.id ? 'none' : 'block' // Show play button if not playing
               }}
-              onClick={() => togglePlay(track.id)}
+              onClick={() => togglePlay(track.id, track.preview)}
             >
               <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.555,3.168A1,1,0,0,0,6,4V20a1,1,0,0,0,1.555.832l12-8a1,1,0,0,0,0-1.664ZM8,18.131V5.869L17.2,12Z"/></svg>
             </button>
@@ -62,7 +67,7 @@ export default function Track({ tracks, buttonType, onButtonClick }) {
                 backgroundColor: 'transparent',
                 display: playingTrackId === track.id ? 'block' : 'none' // Show pause button if playing
               }}
-              onClick={() => togglePlay(track.id)}
+              onClick={() => togglePlay(track.id, track.preview)}
             >
               <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5,3A1,1,0,0,0,4,4V20a1,1,0,0,0,1,1h5a1,1,0,0,0,1-1V4a1,1,0,0,0-1-1ZM9,19H6V5H9ZM14,3a1,1,0,0,0-1,1V20a1,1,0,0,0,1,1h5a1,1,0,0,0,1-1V4a1,1,0,0,0-1-1Zm4,16H15V5h3Z"/></svg>
             </button>
