@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import styles from './Styles.module.css';
 import PlaylistCreator from './components/PlaylistCreator';
 import Playlist from './components/Playlist';
@@ -115,7 +115,7 @@ function App() {
   }, []);
 
 // DATA FETCH
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const response = await fetch(`https://api.spotify.com/v1/search?q=${searchQuery}&type=track`, {
         headers: {
@@ -150,13 +150,13 @@ function App() {
     } catch (error) {
       console.error('Error fetching data: ', error);
     }
-  };
+  }, [searchQuery, token]);
 
   useEffect(() => {
     if (searchQuery && token) {
       fetchData()
     }
-  }, [searchQuery, token]);
+  }, [searchQuery, token, fetchData]);
 
   // PLAYLIST EXPORT
   const exportPlaylist = async (playlistIndex) => {
