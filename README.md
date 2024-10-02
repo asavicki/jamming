@@ -1,6 +1,6 @@
-# Spotify Playlist Creator
+# Jammming Spotify Playlist Creator
 
- Spotify Playlist Creator is a React-based web application that allows users to search for songs, albums, or artists on Spotify and create custom playlists. Users can export these playlists to their Spotify account or manage them within the app.
+ Jammming Spotify Playlist Creator is a React-based web application that allows users to search for songs, albums, or artists on Spotify and create custom playlists. Users can export these playlists to their Spotify account or manage them within the app.
 
 ## Features
 
