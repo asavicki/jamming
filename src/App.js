@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import styles from './Styles.module.css';
+import Header from './components/Header';
 import PlaylistCreator from './components/PlaylistCreator';
 import Playlist from './components/Playlist';
 import SearchBar from './components/SearchBar';
@@ -263,12 +264,7 @@ function App() {
         <Login />
       ) : (
         <>
-          <header>
-            <div className={styles.app_name_container}>
-              <p>Jammming <br /><span>Spotify Playlist Creator</span></p>
-            </div>
-            <button className={styles.logout_btn} onClick={logout}>Log Out</button>
-          </header>
+          <Header logout={logout}/>
           <SearchBar
             setSearchQuery={setSearchQuery}
             searchQuery={searchQuery}
