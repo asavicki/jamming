@@ -100,6 +100,13 @@ input:-webkit-autofill{
     font-weight: var(--fontWeight800);
 }
 
+.countdown {
+    position: absolute;
+    right: 160px;
+    top: 20px;
+    font-weight: var(--fontWeight600);
+}
+
 .app_name_container {
     padding-top: 15px;
 }
@@ -212,8 +219,8 @@ ul.track_details li:first-child {
 .add_remove_btn {
     position: absolute;
     right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
+    bottom: 0;
     background-color: var(--darkBlue);
     font-size: 20px;
     padding: 0;
@@ -233,8 +240,8 @@ ul.track_details li:first-child {
 .play_btn, .pause_btn {
     position: absolute;
     right: 17px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
+    bottom: 0;
     padding: 0;
 }
 

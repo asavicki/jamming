@@ -102,18 +102,33 @@ function App() {
   };
 
   // TOKEN
-  useEffect(() => {
-    const hash = window.location.hash;
-    let token = window.localStorage.getItem('token');
+useEffect(() => {
+  const hash = window.location.hash;
+  let token = window.localStorage.getItem('token');
+  let expiryTime = window.localStorage.getItem('tokenExpiry');
 
-    if(!token && hash) {
-      token = new URLSearchParams(hash.replace('#', '')).get('access_token');
-      window.location.hash = '';
-      window.localStorage.setItem('token', token);
-    }
+  // If no token yet but we have a hash from Spotify
+  if (!token && hash) {
+    const params = new URLSearchParams(hash.replace('#', ''));
+    token = params.get('access_token');
+    const expiresIn = parseInt(params.get('expires_in'), 10); // usually 3600
+    expiryTime = Date.now() + expiresIn * 1000;
 
-    setToken(token);
-  }, []);
+    window.location.hash = '';
+    window.localStorage.setItem('token', token);
+    window.localStorage.setItem('tokenExpiry', expiryTime);
+  }
+
+  // If token exists but is expired
+  if (token && expiryTime && Date.now() > expiryTime) {
+    console.log("Access token expired. Logging out...");
+    window.localStorage.removeItem('token');
+    window.localStorage.removeItem('tokenExpiry');
+    token = null;
+  }
+
+  setToken(token);
+}, []);
 
 // DATA FETCH
   const fetchData = useCallback(async () => {

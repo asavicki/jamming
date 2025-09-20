@@ -2,24 +2,34 @@ import React, { useEffect, useState } from 'react';
 import styles from '../Styles.module.css';
 
 export default function Header({ logout }) {
-    const [timeLeft, setTimeLeft] = useState(59 * 60);
+    const [timeLeft, setTimeLeft] = useState(0);
     const [sessionExpired, setSessionExpired] = useState(false);
 
     useEffect(() => {
-        const timer = setInterval(() => {
-            setTimeLeft(prevTime => {
-                if (prevTime > 0) {
-                    return prevTime - 1;
-                } else {
-                    clearInterval(timer);
-                    setSessionExpired(true);
-                    return 0;
-                }
-            });
-        }, 1000);
+        const expiryTime = localStorage.getItem('tokenExpiry');
+        if (!expiryTime) {
+            setSessionExpired(true);
+            return;
+        }
+
+        const updateTimer = () => {
+            const now = Date.now();
+            const remaining = Math.floor((expiryTime - now) / 1000); // in seconds
+
+            if (remaining > 0) {
+                setTimeLeft(remaining);
+            } else {
+                setSessionExpired(true);
+                setTimeLeft(0);
+                logout(); // auto-logout when time is up
+            }
+        };
+
+        updateTimer(); // run immediately on mount
+        const timer = setInterval(updateTimer, 1000);
 
         return () => clearInterval(timer);
-    }, []);
+    }, [logout]);
 
     return (
         <header>
@@ -29,9 +39,11 @@ export default function Header({ logout }) {
             {sessionExpired ? (
                 <p className={styles.countdown}>Session has expired</p>
             ) : (
-                <p className={styles.countdown}>Session expires in: {timeLeft}</p>
+                <p className={styles.countdown}>
+                    Session expires in: {Math.floor(timeLeft / 60)}m {timeLeft % 60}s
+                </p>
             )}
             <button className={styles.logout_btn} onClick={logout}>Log Out</button>
         </header>
-    )
-};
+    );
+}
