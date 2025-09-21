@@ -3,7 +3,10 @@ import styles from '../Styles.module.css';
 
 export default function Login() {
     const CLIENT_ID = '46d0dd945c24427b91fbadda22636b74';
-    const REDIRECT_URI = 'http://localhost:3000/';
+    const REDIRECT_URI =
+        window.location.hostname === 'localhost'
+            ? 'http://localhost:3000/'
+            : 'https://asavicki.github.io/jamming/';
     const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
     const RESPONSE_TYPE = 'token';
     const scope = 'playlist-read-private playlist-modify-private user-read-private user-read-email';
